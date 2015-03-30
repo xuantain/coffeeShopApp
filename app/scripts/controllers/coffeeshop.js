@@ -21,11 +21,8 @@ angular.module('angularProjectApp')
         ($scope.shop.title.trim().length !== 0)) {
         var theSameObjs = [];
         var title = $scope.shop.title.toLowerCase();
-        if(title.indexOf('coffee') > -1) {
-          title.replace('coffee', '');
-        }
         angular.forEach($scope.coffeeShops, function(coffeeShop) {
-          if(coffeeShop.title.search(title)) {
+          if(coffeeShop.title.toLowerCase().search(title) > -1) {
             theSameObjs.push(coffeeShop);
           }
         });
