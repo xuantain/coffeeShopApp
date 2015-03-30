@@ -11,7 +11,7 @@
 angular.module('angularProjectApp')
   .filter('firstLetterFilter', ['Common', function (Common) {
     return function (items, letter) {
-    	if((undefined == letter) || (letter.trim().length === 0)) {
+    	if((undefined == items) || (undefined == letter) || (letter.trim().length === 0)) {
     		return items;
     	}
     	var filtered = [];
