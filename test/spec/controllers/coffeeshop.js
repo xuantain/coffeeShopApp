@@ -16,19 +16,24 @@ describe('Controller: CoffeeshopCtrl', function () {
     });
     scope.coffeeShops = [
       {
-        'title': 'demo1 coffeeShop',
-        'address': 'ABC Street',
-        'phone': '0905xxxyyy'
+        'title': 'HighLand',
+        'address': 'Bach Dang',
+        'phone': '1234567890'
       },
       {
-        'title': 'demo2 coffeeShop',
-        'address': 'XYZ Street',
-        'phone': '0905xxxyyy'
+        'title': 'Billiard 34',
+        'address': 'Thai Phien',
+        'phone': '1230987456'
       },
       {
-        'title': 'demo3 coffeeShop',
-        'address': 'DEF Street',
-        'phone': '0905xxxyyy'
+        'title': 'Cherry',
+        'address': 'Nguyen Chi Thanh',
+        'phone': '0123654789'
+      },
+      {
+        'title': 'Coc',
+        'address': 'Quang Trung',
+        'phone': '0123654789'
       }
     ];
   }));
@@ -38,10 +43,10 @@ describe('Controller: CoffeeshopCtrl', function () {
     expect(scope.coffeeShops.length).toBeGreaterThan(0);
   });
 
-  it('should add a new shop to coffeeShop', function () {
+  it('should add a new shop to coffeeShops', function () {
     var before = scope.coffeeShops.length;
     scope.shop = {
-        'title': 'demo coffeeShop',
+        'title': 'Molly Coffee',
         'address': 'Street',
         'phone': '0905xxxyyy'
     };
@@ -49,21 +54,21 @@ describe('Controller: CoffeeshopCtrl', function () {
     expect(scope.coffeeShops.length).toBe(before + 1);
   });
 
-  it('no new shop added to coffeeShop when scope.shop = {}', function () {
+  it('no new shop added to coffeeShops when scope.shop = {}', function () {
     var before = scope.coffeeShops.length;
     scope.shop = {};
     scope.addNewShop();
     expect(scope.coffeeShops.length).toBe(before);
   });
 
-  it('no new shop added to coffeeShop when scope.shop is empty', function () {
+  it('no new shop added to coffeeShops when scope.shop is empty', function () {
     var before = scope.coffeeShops.length;
     scope.shop = '';
     scope.addNewShop();
     expect(scope.coffeeShops.length).toBe(before);
   });
 
-  it('no new shop added to coffeeShop when scope.shop.title is empty or blank', function () {
+  it('no new shop added to coffeeShops when scope.shop.title is empty or blank', function () {
     var before = scope.coffeeShops.length;
     scope.shop = {
         'title': '',
@@ -81,30 +86,30 @@ describe('Controller: CoffeeshopCtrl', function () {
     expect(scope.coffeeShops.length).toBe(before);
   });
 
-  it('no new shop added to coffeeShop when scope.shop had existed', function () {
+  it('no new shop added to coffeeShops when scope.shop had existed', function () {
     var before = scope.coffeeShops.length;
     scope.shop = {
-        'title': 'demo3 coffeeShop',
+        'title': 'HighLand',
         'address': 'DEF Street',
         'phone': '0905xxxyyy'
-      }
+    };
     scope.addNewShop();
     expect(scope.coffeeShops.length).toBe(before);
   });
 
-  it('should remove a shop from coffeeShop', function () {
+  it('should remove a shop from coffeeShops', function () {
     var before = scope.coffeeShops.length;
     scope.removeShop(0);
     expect(scope.coffeeShops.length).toBe(before - 1);
   });
   
-  it('no shop removed from coffeeShop when param: $index = -1', function () {
+  it('no shop removed from coffeeShops when param: $index = -1', function () {
     var before = scope.coffeeShops.length;
     scope.removeShop(-1);
     expect(scope.coffeeShops.length).toBe(before);
   });
   
-  it('no shop removed from coffeeShop when param: $index = out of range', function () {
+  it('no shop removed from coffeeShops when param: $index = out of range', function () {
     var before = scope.coffeeShops.length;
     scope.removeShop(before + 1);
     expect(scope.coffeeShops.length).toBe(before);
