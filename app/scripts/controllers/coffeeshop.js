@@ -10,23 +10,45 @@
 angular.module('angularProjectApp')
   .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common) {
     
+    var demoCoffeeShops = [
+      {
+        'title': 'HighLand',
+        'address': 'Bach Dang',
+        'phone': '1234567890'
+      },
+      {
+        'title': 'Billiard 34',
+        'address': 'Thai Phien',
+        'phone': '1230987456'
+      },
+      {
+        'title': 'Cherry',
+        'address': 'Nguyen Chi Thanh',
+        'phone': '0123654789'
+      },
+      {
+        'title': 'Coc',
+        'address': 'Quang Trung',
+        'phone': '0123654789'
+      }
+    ];
     $scope.coffeeShops = {};
   	var shopsInStore = localStorageService.get('coffeeShops');
-  	$scope.coffeeShops = shopsInStore || [];
+  	$scope.coffeeShops = shopsInStore || demoCoffeeShops;//[];
   	$scope.$watch(function(){
   		localStorageService.set('coffeeShops', $scope.coffeeShops);
   	}, true);
   	$scope.addNewShop = function() {
       if(Common.isObjJSON($scope.shop) && (undefined !== $scope.shop.title) && 
         ($scope.shop.title.trim().length !== 0)) {
-        var theSameObjs = [];
+        $scope.theSameShops = [];
         var title = $scope.shop.title.toLowerCase();
         angular.forEach($scope.coffeeShops, function(coffeeShop) {
           if(coffeeShop.title.toLowerCase().search(title) > -1) {
-            theSameObjs.push(coffeeShop);
+            $scope.theSameShops.push(coffeeShop);
           }
         });
-        if(theSameObjs.length > 0) {
+        if($scope.theSameShops.length > 0) {
       		
         } else {
           $scope.coffeeShops.push($scope.shop);

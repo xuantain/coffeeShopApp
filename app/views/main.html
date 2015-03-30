@@ -20,12 +20,16 @@
       </div>
 
       <div id="theSameShops" class="row">
+        <div class="col-sm-12">
+          <h2>The shop is similar</h2>
+          <coffee-shop-similar ng-repeat="shop in theSameShops | firstLetterFilter:shop.title"/>
+        </div>
       </div>
     </div>
   </form>
 
   <div ui-sortable ng-model="coffeeShops" class="col-sm-6">
-    <h2>My coffeeShops</h2>
+    <h2>Searching</h2>
     <div class="input-group">
       <input type="text" class="text-box col-sm-12" ng-model="query"/>
     </div>
