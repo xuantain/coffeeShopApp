@@ -1,0 +1,36 @@
+<div class="container">
+  <form role="form" ng-submit="addNewShop()">
+    <div class="col-sm-4">
+      <div class="input-group row">
+        <div class="col-sm-12">
+          <label for="title">Title:</label>
+          <input id="title" type="text" ng-model="shop.title" class="col-sm-12" placeHolder="Type new coffee's title" required />  
+        </div>
+        <div class="col-sm-12">
+          <label for="address">Address:</label>
+          <input id="address" type="text" ng-model="shop.address" class="col-sm-12" placeHolder="Type new coffee's address"/>
+        </div>
+        <div class="col-sm-12">
+          <label for="phone">Phone:</label>
+          <input id="phone" type="text" ng-model="shop.phone" class="col-sm-12" placeHolder="Type new coffee's phone"/>
+        </div>
+        <span class="col-sm-12" style="padding: 10px 15px; cursor: point;">
+          <input type="submit" class="btn-private col-sm-12" value="Add New"/>
+        </span>
+      </div>
+
+      <div id="theSameShops" class="row">
+      </div>
+    </div>
+  </form>
+
+  <div ui-sortable ng-model="coffeeShops" class="col-sm-6">
+    <h2>My coffeeShops</h2>
+    <div class="input-group">
+      <input type="text" class="text-box col-sm-12" ng-model="query"/>
+    </div>
+    <div style="margin-top:10px; max-height:40em;">
+      <coffee-shop ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
+    </div>
+  </div>
+</div>
