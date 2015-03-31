@@ -1,8 +1,28 @@
+<style>
+  .aroundDown {
+    float: left;
+    margin-top: 5px;
+    width: 5px;
+    height: 5px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid green;
+    cursor: pointer;
+  }
+</style>
 <div class="shop row">
-	<div class="col-sm-8">
-		<h4>{{shop.title}}</h4>
+	<div class="col-sm-12">
+		<div class="col-sm-8">
+			<h4>{{shop.title}}</h4>
+		</div>
+		<div class="aroundDown" ng-click="isOpen = !isOpen"></div>
+		<div class="col-sm-2">
+			<button class="btn btn-update" ng-click="updateShop(shop)" aria-label="Update">Update</button>
+		</div>
 	</div>
-	<div class="col-sm-2">
-		<button class="btn btn-update" ng-click="updateToShop($index)" aria-label="Update">Update</button>
+	<div class="col-sm-12" ng-show="isOpen">
+		<div class="col-sm-12">
+			{{shop.address}} - {{shop.phone}}
+		</div>
 	</div>
 </div>

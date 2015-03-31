@@ -55,10 +55,23 @@ angular.module('angularProjectApp')
           $scope.shop = '';
         }
   	}};
-  	$scope.removeShop = function(index) {
-      if((-1 < index) && (index < $scope.coffeeShops.length)) {
+  	$scope.removeShop = function(shop) {
+      var index = -1;
+      if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
   		  $scope.coffeeShops.splice(index, 1);
       }
   	};
+    $scope.updateShop = function(shop) {
+      var index = -1;
+      if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
+        shop.title = $scope.shop.title;
+        shop.address = $scope.shop.address;
+        shop.phone = $scope.shop.phone;
+        $scope.coffeeShops[index] = shop;
+        //reset all: scope.theSameShops + scope.shop
+        $scope.theSameShops = [];
+        $scope.shop = '';
+      }
+    };
 
   });

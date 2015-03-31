@@ -99,20 +99,19 @@ describe('Controller: CoffeeshopCtrl', function () {
 
   it('should remove a shop from coffeeShops', function () {
     var before = scope.coffeeShops.length;
-    scope.removeShop(0);
+    scope.removeShop(scope.coffeeShops[0]);
     expect(scope.coffeeShops.length).toBe(before - 1);
   });
   
-  it('no shop removed from coffeeShops when param: $index = -1', function () {
+  it('no shop removed from coffeeShops when param: shop is not existed in coffeeShops', function () {
     var before = scope.coffeeShops.length;
-    scope.removeShop(-1);
+    var shop = {
+        'title': 'demo coffeeShop',
+        'address': 'Street',
+        'phone': '0905xxxyyy'
+    };
+    scope.removeShop(shop);
     expect(scope.coffeeShops.length).toBe(before);
   });
-  
-  it('no shop removed from coffeeShops when param: $index = out of range', function () {
-    var before = scope.coffeeShops.length;
-    scope.removeShop(before + 1);
-    expect(scope.coffeeShops.length).toBe(before);
-  });
-  
+    
 });
