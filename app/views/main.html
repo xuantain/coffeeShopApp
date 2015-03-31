@@ -28,12 +28,12 @@
     </div>
   </form>
 
-  <div ui-sortable ng-model="coffeeShops" class="col-sm-6">
+  <div class="col-sm-6">
     <h2>Searching</h2>
     <div class="input-group">
       <input type="text" class="text-box col-sm-12" ng-model="query"/>
     </div>
-    <div style="margin-top:10px; max-height:40em;">
+    <div ui-sortable="{ 'ui-floating': true }" ng-model="coffeeShops" style="margin-top:10px; max-height:40em;">
       <coffee-shop ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
     </div>
   </div>
