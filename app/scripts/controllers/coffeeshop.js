@@ -38,42 +38,56 @@ angular.module('angularProjectApp')
   	$scope.$watch(function(){
   		localStorageService.set('coffeeShops', $scope.coffeeShops);
   	}, true);
+
   	$scope.addNewShop = function() {
       if(Common.isObjJSON($scope.shop) && (undefined !== $scope.shop.title) && 
         ($scope.shop.title.trim().length !== 0)) {
-        $scope.theSameShops = [];
-        var title = $scope.shop.title.toLowerCase();
-        angular.forEach($scope.coffeeShops, function(coffeeShop) {
-          if(coffeeShop.title.toLowerCase().search(title) > -1) {
-            $scope.theSameShops.push(coffeeShop);
-          }
-        });
+        var isAddNew = false;
+        $scope.theSameShops = $scope.theSameShops || [];
         if($scope.theSameShops.length > 0) {
-      		
+          isAddNew = true;
         } else {
+          var title = $scope.shop.title.toLowerCase();
+          angular.forEach($scope.coffeeShops, function(coffeeShop) {
+            if((coffeeShop.title.toLowerCase().search(title) > -1) || 
+              (title.search(coffeeShop.title.toLowerCase()) > -1)) {
+              $scope.theSameShops.push(coffeeShop);
+            }
+          });
+          if($scope.theSameShops.length === 0) {
+            isAddNew = true;
+          }
+        }
+        if(isAddNew) {
           $scope.coffeeShops.push($scope.shop);
+          $scope.theSameShops = [];
           $scope.shop = '';
         }
   	}};
+
   	$scope.removeShop = function(shop) {
       var index = -1;
       if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
   		  $scope.coffeeShops.splice(index, 1);
       }
   	};
+
     $scope.updateShop = function(shop) {
       var index = -1;
       if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
-        shop.title = $scope.shop.title;
-        shop.address = $scope.shop.address;
-        shop.phone = $scope.shop.phone;
-        $scope.coffeeShops[index] = shop;
-        //reset all: scope.theSameShops + scope.shop
-        $scope.theSameShops = [];
-        $scope.shop = '';
+        if((undefined !== $scope.shop.address) && ($scope.shop.address.trim().length !== 0)) {
+          shop.address = $scope.shop.address;
+          shop.phone = $scope.shop.phone;
+          $scope.coffeeShops[index] = shop;
+          //reset all: scope.theSameShops + scope.shop
+          $scope.theSameShops = [];
+          $scope.shop = '';
+        } else {
+
+        }
         return;
       }
-      throw Error(shop + ' is not exist!');
+      throw new Error(shop + ' is not exist!');
     };
 
   });
