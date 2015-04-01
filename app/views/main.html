@@ -22,7 +22,7 @@
       <div id="theSameShops" class="row">
         <div class="col-sm-12">
           <h2>The shop is similar</h2>
-          <coffee-shop-similar ng-repeat="shop in theSameShops | firstLetterFilter:shop.title"/>
+          <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.title"/>
         </div>
       </div>
     </div>
@@ -31,10 +31,10 @@
   <div class="col-sm-6">
     <h2>Searching</h2>
     <div class="input-group">
-      <input type="text" class="text-box col-sm-12" ng-model="query"/>
+      <input type="text" class="text-box col-sm-12" ng-model="query" ng-change="theSameShops = []" />
     </div>
-    <div ui-sortable="{ 'ui-floating': true }" ng-model="coffeeShops" style="margin-top:10px; max-height:40em;">
-      <coffee-shop ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
+    <div ui-sortable ng-model="coffeeShops" style="margin-top:10px; max-height:40em;">
+      <coffee-shop class="repeated-item" ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
     </div>
   </div>
 </div>
