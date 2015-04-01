@@ -71,7 +71,9 @@ angular.module('angularProjectApp')
         //reset all: scope.theSameShops + scope.shop
         $scope.theSameShops = [];
         $scope.shop = '';
+        return;
       }
+      throw Error(shop + ' is not exist!');
     };
 
   });

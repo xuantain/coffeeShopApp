@@ -43,75 +43,143 @@ describe('Controller: CoffeeshopCtrl', function () {
     expect(scope.coffeeShops.length).toBeGreaterThan(0);
   });
 
-  it('should add a new shop to coffeeShops', function () {
-    var before = scope.coffeeShops.length;
-    scope.shop = {
-        'title': 'Molly Coffee',
-        'address': 'Street',
-        'phone': '0905xxxyyy'
-    };
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before + 1);
-  });
-
-  it('no new shop added to coffeeShops when scope.shop = {}', function () {
-    var before = scope.coffeeShops.length;
-    scope.shop = {};
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before);
-  });
-
-  it('no new shop added to coffeeShops when scope.shop is empty', function () {
-    var before = scope.coffeeShops.length;
-    scope.shop = '';
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before);
-  });
-
-  it('no new shop added to coffeeShops when scope.shop.title is empty or blank', function () {
-    var before = scope.coffeeShops.length;
-    scope.shop = {
-        'title': '',
-        'address': 'Street',
-        'phone': '0905xxxyyy'
-    };
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before);
-    scope.shop = {
-        'title': '   ',
-        'address': 'Street',
-        'phone': '0905xxxyyy'
-    };
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before);
-  });
-
-  it('no new shop added to coffeeShops when scope.shop had existed', function () {
-    var before = scope.coffeeShops.length;
-    scope.shop = {
-        'title': 'HighLand',
-        'address': 'DEF Street',
-        'phone': '0905xxxyyy'
-    };
-    scope.addNewShop();
-    expect(scope.coffeeShops.length).toBe(before);
-  });
-
-  it('should remove a shop from coffeeShops', function () {
-    var before = scope.coffeeShops.length;
-    scope.removeShop(scope.coffeeShops[0]);
-    expect(scope.coffeeShops.length).toBe(before - 1);
-  });
-  
-  it('no shop removed from coffeeShops when param: shop is not existed in coffeeShops', function () {
-    var before = scope.coffeeShops.length;
-    var shop = {
-        'title': 'demo coffeeShop',
-        'address': 'Street',
-        'phone': '0905xxxyyy'
-    };
-    scope.removeShop(shop);
-    expect(scope.coffeeShops.length).toBe(before);
-  });
+  describe('Test method addNewShop()', function() {
     
+    it('should add a new shop to coffeeShops', function () {
+      var before = scope.coffeeShops.length;
+      scope.shop = {
+          'title': 'Molly Coffee',
+          'address': 'Street',
+          'phone': '0905xxxyyy'
+      };
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before + 1);
+    });
+
+    it('no new shop added to coffeeShops when scope.shop = {}', function () {
+      var before = scope.coffeeShops.length;
+      scope.shop = {};
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+
+    it('no new shop added to coffeeShops when scope.shop is empty', function () {
+      var before = scope.coffeeShops.length;
+      scope.shop = '';
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+
+    it('no new shop added to coffeeShops when scope.shop.title is empty or blank', function () {
+      var before = scope.coffeeShops.length;
+      scope.shop = {
+          'title': '',
+          'address': 'Street',
+          'phone': '0905xxxyyy'
+      };
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before);
+      scope.shop = {
+          'title': '   ',
+          'address': 'Street',
+          'phone': '0905xxxyyy'
+      };
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+
+    it('no new shop added to coffeeShops when scope.shop had existed', function () {
+      var before = scope.coffeeShops.length;
+      scope.shop = {
+          'title': 'HighLand',
+          'address': 'DEF Street',
+          'phone': '0905xxxyyy'
+      };
+      scope.addNewShop();
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+  });
+
+  describe('Test method removeShop()', function() {
+
+    it('should remove a shop from coffeeShops', function () {
+      var before = scope.coffeeShops.length;
+      scope.removeShop(scope.coffeeShops[0]);
+      expect(scope.coffeeShops.length).toBe(before - 1);
+    });
+    
+    it('no shop removed from coffeeShops when param: shop is not existed in coffeeShops', function () {
+      var before = scope.coffeeShops.length;
+      var shop = {
+          'title': 'demo coffeeShop',
+          'address': 'Street',
+          'phone': '0905xxxyyy'
+      };
+      scope.removeShop(shop);
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+      
+    it('no shop removed from coffeeShops when param: shop is mock obj', function () {
+      var before = scope.coffeeShops.length;
+      var shop = {
+          'title': 'Coc',
+          'address': 'Quang Trung',
+          'phone': '0123654789'
+        };
+      scope.removeShop(shop);
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+      
+    it('no shop removed from coffeeShops when param: shop is mock obj', function () {
+      var before = scope.coffeeShops.length;
+      var shop = {
+          'title': 'Coc',
+          'address': 'Quang Trung',
+          'phone': '0123654789'
+        };
+      scope.removeShop(shop);
+      expect(scope.coffeeShops.length).toBe(before);
+    });
+  });
+
+  describe('Test method updateShop()', function() {
+
+    it('no shop was updated when param is a shop (address is empty)', function() {
+      var shopUpdate = scope.coffeeShops[3];
+      scope.shop = {
+          'title': 'Coc',
+          'address': '',
+          'phone': '0123654789'
+        };
+      scope.updateShop(shopUpdate);
+      expect(scope.coffeeShops[3].address).not.toEqual('');
+      expect(scope.coffeeShops[3].address).toBe(shopUpdate.address);
+    });
+    
+    it('no shop was updated when param is a shop (address is blank)', function() {
+      var shopUpdate = scope.coffeeShops[3];
+      scope.shop = {
+          'title': 'Coc',
+          'address': '   ',
+          'phone': '0123654789'
+        };
+      scope.updateShop(shopUpdate);
+      expect(scope.coffeeShops[3].address).not.toEqual('   ');
+      expect(scope.coffeeShops[3].address).toBe(shopUpdate.address);
+    });
+    
+    it('no shop was updated when param is a shop (address is undefined)', function() {
+      var shopUpdate = scope.coffeeShops[3];
+      scope.shop = {
+          'title': 'Coc',
+          'address': undefined,
+          'phone': '0123654789'
+        };
+      scope.updateShop(shopUpdate);
+      expect(scope.coffeeShops[3].address).not.toBeUndefined();
+      expect(scope.coffeeShops[3].address).toBe(shopUpdate.address);
+    });
+
+  });
+
 });

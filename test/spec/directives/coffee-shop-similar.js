@@ -15,6 +15,6 @@ describe('Directive: coffeeShopSimilar', function () {
   it('should make hidden element visible', inject(function ($compile) {
     element = angular.element('<coffee-shop-similar></coffee-shop-similar>');
     element = $compile(element)(scope);
-    expect(element.text()).toBe('this is the coffeeShopSimilar directive');
+    expect(element.text()).toBe('');
   }));
 });
