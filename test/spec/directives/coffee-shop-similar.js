@@ -3,7 +3,7 @@
 describe('Directive: coffeeShopSimilar', function () {
 
   // load the directive's module
-  beforeEach(module('angularProjectApp'));
+  beforeEach(module('coffeeShopApp'));
 
   var element,
     scope;
@@ -17,4 +17,5 @@ describe('Directive: coffeeShopSimilar', function () {
     element = $compile(element)(scope);
     expect(element.text()).toBe('');
   }));
+  
 });

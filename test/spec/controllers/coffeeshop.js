@@ -3,7 +3,7 @@
 describe('Controller: CoffeeshopCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularProjectApp'));
+  beforeEach(module('coffeeShopApp'));
 
   var CoffeeshopCtrl,
     scope;

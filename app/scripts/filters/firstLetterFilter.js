@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc filter
- * @name angularProjectApp.filter:firstLetterFilter
+ * @name coffeeShopApp.filter:firstLetterFilter
  * @function
  * @description
  * # reverseFilter
- * Filter in the angularProjectApp.
+ * Filter in the coffeeShopApp.
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .filter('firstLetterFilter', ['Common', function (Common) {
     return function (items, letter) {
     	if((undefined == items) || (undefined == letter) || (letter.trim().length === 0)) {

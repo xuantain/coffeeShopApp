@@ -3,7 +3,7 @@
 describe('Service: Common', function () {
 
   // load the service's module
-  beforeEach(module('angularProjectApp'));
+  beforeEach(module('coffeeShopApp'));
 
   // instantiate service
   var common;

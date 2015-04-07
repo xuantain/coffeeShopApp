@@ -3,23 +3,22 @@
 describe('Directive: coffee-shop', function () {
 
   // load the controller's module
-  beforeEach(module('angularProjectApp'));
+  beforeEach(module('coffeeShopApp'));
   beforeEach(angular.module('ngTemplates'));
 
   var elm, scope, template;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($compile, $rootScope) {
-    scope = $rootScope.$new();
-    scope.shop = {
-        'title': 'HighLand',
-        'address': 'Bach Dang',
-        'phone': '1234567890'
-    };
-    elm = angular.element('<coffee-shop></coffee-shop>');
+      scope = $rootScope.$new();
+      scope.shop = {
+          'title': 'HighLand',
+          'address': 'Bach Dang',
+          'phone': '1234567890'
+      };
+      elm = angular.element('<coffee-shop></coffee-shop>');
       elm = $compile(elm)(scope);
       scope.$digest();
-      // linkFn = $compile(elm);
   }));
 
   it('Tag h3 should return title not null', function () {

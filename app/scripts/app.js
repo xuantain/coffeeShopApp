@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name angularProjectApp
+ * @name coffeeShopApp
  * @description
- * # angularProjectApp
+ * # coffeeShopApp
  *
  * Main module of the application.
  */
 angular
-  .module('angularProjectApp', [
+  .module('coffeeShopApp', [
     // 'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -19,6 +19,13 @@ angular
     'ui.sortable',
     'LocalStorageModule'
   ])
+  .constant('appInfo', {
+    'hostPath': 'http://localhost',
+    'port': '9000',
+    'appName': 'coffeeShops',
+    'servicePath': 'http://localhost:5984',
+    'dbName': 'coffee_shops'
+  })
   .run(function($templateCache){
     $templateCache.put('coffee-shop', 'views/coffee-shop.html');
     $templateCache.put('coffee-shop-similar', 'views/coffee-shop-similar.html');

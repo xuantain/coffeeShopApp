@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name angularProjectApp.controller:CoffeeshopCtrl
+ * @name coffeeShopApp.controller:CoffeeshopCtrl
  * @description
  * # CoffeeshopCtrl
- * Controller of the angularProjectApp
+ * Controller of the coffeeShopApp
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common) {
     
     var demoCoffeeShops = [

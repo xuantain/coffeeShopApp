@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc directive
- * @name angularProjectApp.directive:coffeeShopSimilar
+ * @name coffeeShopApp.directive:coffeeShopSimilar
  * @description
  * # coffeeShopSimilar
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .directive('coffeeShopSimilar', function ($templateCache) {
     return {
       templateUrl: $templateCache.get('coffee-shop-similar'),

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name angularProjectApp.common
+ * @name coffeeShopApp.common
  * @description
  * # common
- * Service in the angularProjectApp.
+ * Service in the coffeeShopApp.
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .service('Common', function Common() {
 	this.isObjJSON = function(jsonToCheck) {
 		var objectConstructor = {}.constructor;
@@ -21,5 +21,5 @@ angular.module('angularProjectApp')
 		    }
 		}
 		return false;
-	}
+	};
 });
