@@ -8,7 +8,7 @@
  * Service in the coffeeShopApp.
  */
 angular.module('coffeeShopApp')
-  .service('Coffeeshopdb', function Coffeeshopdb($q, $http, appInfo) {
+  .service('coffeeShopDB', function coffeeShopDB($q, $http, appInfo) {
 
     this.getAll = function() {};
     this.getAllByCountry = function(country) {};
@@ -19,6 +19,7 @@ angular.module('coffeeShopApp')
     	$http.get(appInfo.servicePath + '/' + appInfo.dbName)
     	.success(function(data) {
     		// TODO: return data
+            return data;
     	})
     	.error(function() {
     		alert('an error ocurred');

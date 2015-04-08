@@ -7,8 +7,8 @@ describe('Service: coffeeShopDB', function () {
 
   // instantiate service
   var coffeeShopDB;
-  beforeEach(inject(function (_CoffeeShopDB_) {
-    coffeeShopDB = _CoffeeShopDB_;
+  beforeEach(inject(function (_coffeeShopDB_) {
+    coffeeShopDB = _coffeeShopDB_;
   }));
 
   describe('Method: getAll', function () {
@@ -34,8 +34,8 @@ describe('Service: coffeeShopDB', function () {
   describe('Method: getByName', function () {
     
     it('should be return not null', function() {
-      // var results = coffeeShopDB.getByName('coc');
-      // expect(results).not.toBeNull();
+      var results = coffeeShopDB.getByName('Evalyn');
+      expect(results).not.toBeNull();
     });
 
   });
