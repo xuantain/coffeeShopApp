@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name angularProjectApp.controller:AboutCtrl
+ * @name coffeeShopApp.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the angularProjectApp
+ * Controller of the coffeeShopApp
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .controller('AboutCtrl', function ($scope) {
   });

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name angularProjectApp.coffeeShopDB
+ * @name coffeeShopApp.coffeeShopDB
  * @description
  * # coffeeShopDB
- * Service in the angularProjectApp.
+ * Service in the coffeeShopApp.
  */
-angular.module('angularProjectApp')
+angular.module('coffeeShopApp')
   .service('Coffeeshopdb', function Coffeeshopdb($q, $http, appInfo) {
 
     this.getAll = function() {};
