@@ -33,9 +33,9 @@ module.exports = function(config) {
       'app/bower_components/angular-ui-sortable/sortable.js',
       'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
       // endbower
-      'app/views/*.html',
+      'app/views/**/*.html',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
+      // 'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
 
@@ -86,17 +86,18 @@ module.exports = function(config) {
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
 
-
     preprocessors: {
-      'app/views/*.html': ['ng-html2js'],
+      'app/views/**/*.html': ['ng-html2js'],
+      // 'app/views/**/*.html': 'html2js',
       'src/angular-stepper.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
       // strip this from the file path
-      stripPrefix: 'views/',
+      stripPrefix: 'app/views/',
       stripSufix: '.html',
-      moduleName: 'ngTemplates'
+      // prependPrefix: '/app',
+      moduleName: 'templates'
     },
 
     // add coverage to reporters
