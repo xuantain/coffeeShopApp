@@ -3,13 +3,16 @@
 describe('Directive: coffee-shop', function () {
 
   // load the controller's module
+  beforeEach(module('templates'));
   beforeEach(module('coffeeShopApp'));
-  beforeEach(angular.module('ngTemplates'));
 
-  var elm, scope, template;
+  var elm, scope, template, $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($compile, $rootScope) {
+  beforeEach(inject(function ($compile, $rootScope, $injector) {
+      $httpBackend = $injector.get('$httpBackend');
+      // $httpBackend.whenGET('coffee-shop').respond('<div>{{shop.title}}</div>');
+      // $httpBackend.whenGET('views/coffee-shop.html').passThrough();
       scope = $rootScope.$new();
       scope.shop = {
           'title': 'HighLand',
@@ -17,8 +20,10 @@ describe('Directive: coffee-shop', function () {
           'phone': '1234567890'
       };
       elm = angular.element('<coffee-shop></coffee-shop>');
+      console.log(elm);
       elm = $compile(elm)(scope);
-      scope.$digest();
+      console.log(elm);
+      scope.$apply();
   }));
 
   it('Tag h3 should return title not null', function () {
