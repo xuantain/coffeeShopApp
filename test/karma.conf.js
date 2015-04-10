@@ -88,16 +88,11 @@ module.exports = function(config) {
 
     preprocessors: {
       'app/views/**/*.html': ['ng-html2js'],
-      // 'app/views/**/*.html': 'html2js',
       'src/angular-stepper.js': ['coverage']
     },
 
     ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'app/views/',
-      stripSufix: '.html',
-      // prependPrefix: '/app',
-      moduleName: 'templates'
+      stripPrefix: 'app/'
     },
 
     // add coverage to reporters
