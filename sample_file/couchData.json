@@ -1,0 +1,18 @@
+{
+  "docs": [
+    {
+      "_id": "first_doc_in_file",
+      "_rev": "1-471143986d8cd8eccd4fca04743d1c0b",
+      "coreStatisInformationData": {
+        "item1":"Nothing inside"
+      }
+    },
+    {
+      "_id": "second_doc_in_file",
+      "_rev": "1-472143986d8cd8eccd4fca04743d1c0b",
+      "coreStatisInformationData": {
+        "item1":"Nothing inside also"
+      }
+    }
+  ]
+}
