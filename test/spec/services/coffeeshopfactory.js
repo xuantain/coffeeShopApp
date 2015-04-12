@@ -35,6 +35,29 @@ describe('Service: CoffeeShopFactory', function() {
     expect(shop1.address).toEqual('Bach Dang');
   });
 
+  it('should be create complete coffee shops', function() {
+    var shop1 = CoffeeShopFactory.create({
+      'id': 'abczyzitem1',
+      'title': 'Highland'
+    });
+
+    expect(shop1).toBeDefined();
+    expect(shop1).toEqual({
+      id: 'abczyzitem1',
+      title: 'Highland',
+      address: '',
+      phone: '',
+      country: '',
+      city: '',
+      district: '',
+      mainImage: null,
+      menu: Object({}),
+      dateCreate: '',
+      isOperational: '',
+      rate: ''
+    });
+  });
+
   it('should be able to save', function() {
     var shop1 = CoffeeShopFactory.create({
       'id': 'abczyzitem1',
