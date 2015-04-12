@@ -19,17 +19,21 @@ angular
     'ui.sortable',
     'LocalStorageModule'
   ])
-  .constant('appInfo', {
+  .constant('appSettings', {
+    'appName': 'coffeeShops',
     'hostPath': 'http://localhost',
     'port': '9000',
-    'appName': 'coffeeShops',
-    'servicePath': 'http://localhost:5984',
-    'dbName': 'coffee_shops'
+    'db': 'http://localhost:5984/coffee_shops'
   })
   .run(function($templateCache){
     $templateCache.put('coffee-shop', 'views/coffee-shop.html');
     $templateCache.put('coffee-shop-similar', 'views/coffee-shop-similar.html');
   })
+  .config(['$httpProvider', function ($httpProvider) {
+      $httpProvider.defaults.useXDomain = true;
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+  ])
   .config(['localStorageServiceProvider', function(localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('shopApp');
   }])

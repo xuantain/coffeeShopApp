@@ -8,8 +8,11 @@
  * Controller of the coffeeShopApp
  */
 angular.module('coffeeShopApp')
-  .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common) {
+  .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common, coffeeShopDB) {
     
+    var data = coffeeShopDB.getAll();
+    console.log(data);
+
     var demoCoffeeShops = [
       {
         'title': 'HighLand',
