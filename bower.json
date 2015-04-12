@@ -1,5 +1,5 @@
 {
-  "name": "angular-project",
+  "name": "coffeeShopApp",
   "version": "0.0.0",
   "dependencies": {
     "angular": "1.2.15",
