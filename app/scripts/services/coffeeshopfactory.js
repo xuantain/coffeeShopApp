@@ -8,7 +8,7 @@
  * Service in the coffeeShopApp.
  */
 angular.module('coffeeShopApp')
-  .service('CoffeeShopFactory', function() {
+  .factory('CoffeeShopFactory', function() {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     var coffeeShopFunctionality = {
