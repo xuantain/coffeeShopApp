@@ -9,5 +9,9 @@
  */
 angular.module('coffeeShopApp')
   .service('privateConstants', function () {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+    return {
+      googleMapsAPI : {
+        API_KEY: 'putyourprivatekeyhere_dontsharethiswithanyone'
+      }
+    };
   });
