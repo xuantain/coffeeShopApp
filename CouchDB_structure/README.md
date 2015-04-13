@@ -1,0 +1,1 @@
+Demo CouchDB Structure.
