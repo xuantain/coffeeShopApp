@@ -12,11 +12,9 @@ angular.module('coffeeShopApp')
 
     this.getAll = function() {
         console.log(appSettings.db + '/_all_docs');
-        $http.get('http://localhost:5984/_utils/database.html?coffee_shops/_design/coffeeShops/_view/getAll')
+        $http.get(appSettings.db + '/_design/coffeeShops/_view/getAll')
         .success(function(data) {
-            // TODO: return data
-            alert(data.rows);
-            return data;
+            return data.rows;
         })
         .error(function() {
             alert('an error ocurred');
@@ -27,17 +25,24 @@ angular.module('coffeeShopApp')
     this.getAllByDistrict = function(district) {};
     this.getAllByLocation = function(location) {};
     this.getByName = function(name) {
-    	$http.get(appSettings.db)
+    	$http.get(appSettings.db + '/_design/coffeeShops/_view/getByLocation')
     	.success(function(data) {
-    		// TODO: return data
-            return data;
+            return data.rows;
     	})
     	.error(function() {
     		alert('an error ocurred');
     	});
     };
 
-    this.put = function() {};
+    this.put = function() {
+        $http.put(appSettings.db + '/_design/coffeeShops/_view/getByLocation')
+        .success(function(data) {
+            return data.rows;
+        })
+        .error(function() {
+            alert('an error ocurred');
+        });  
+    };
     this.update = function(coffeeShop) {};
     this.delete = function(coffeeShop) {};
     this.deleteById = function(id) {};
