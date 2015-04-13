@@ -1,3 +1,5 @@
+app/scripts/services/privateconstants.js
+
 node_modules
 dist
 .tmp
