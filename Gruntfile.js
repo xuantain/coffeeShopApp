@@ -349,16 +349,29 @@ module.exports = function(grunt) {
     },
 
     'couch-push': {
+      options: {
+        user: 'admin',
+        pass: 'admin'
+      },
       localhost: {
-        options: {
-          user: 'admin',
-          pass: 'none'
-        },
         files: {
-          'http://localhost:5984/coffee_shops': 'sample_file/couchData.json'
+          'http://localhost:5984/coffee_shops': 'sample_file/coffeeShopData.json'
         }
       }
     },
+    
+    'couch-security': {
+      options: {
+        user: 'admin',
+        pass: 'admin'
+      },
+      localhost: {
+        files: {
+          'http://localhost:5984/coffee_shops': 'sample_file/coffeeShopData.json'
+        }
+      }
+    }
+
   });
 
   grunt.registerTask('serve', function(target) {
