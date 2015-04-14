@@ -24,7 +24,7 @@ angular
     'hostPath': 'http://localhost',
     'port': '9000',
     // 'db': 'https://coffeeshop.iriscouch.com/coffee_shop'
-    'db': 'http://localhost:5984/coffee_shop'
+    'db': 'http://localhost:5984/coffee_shops'
   })
   .run(function($templateCache){
     $templateCache.put('coffee-shop', 'views/coffee-shop.html');

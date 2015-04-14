@@ -1,0 +1,73 @@
+{
+  "docs": [
+    {
+      "id": "abczyzitem1",
+      "title": "Highland",
+      "address": "Bach Dang",
+      "phone": "0905xxxyyy",
+      "country": "vn",
+      "city": "Da Nang",
+      "district": "Hai Chau",
+      "mainImage" : 0,
+      "_attachments": {},
+      "menu": {
+        "cafe sua": {},
+        "tra da": {}
+      },
+      "dateCreate": "2015-04-01",
+      "isOperational": "true",
+      "rate": "3"
+    },{
+      "id": "abczyzitem2",
+      "title": "Evelyn",
+      "address": "Tran Phu",
+      "phone": "0905xxxyyy",
+      "country": "vn",
+      "city": "Da Nang",
+      "district": "Hai Chau",
+      "mainImage" : 0,
+      "_attachments": {},
+      "menu": {
+        "cafe sua": {},
+        "tra da": {}
+      },
+      "dateCreate": "2015-04-01",
+      "isOperational": "true",
+      "rate": "3"
+    },{
+      "id": "abczyzitem3",
+      "title": "Cherry",
+      "address": "Nguyen Chi Thanh",
+      "phone": "0905xxxyyy",
+      "country": "vn",
+      "city": "Da Nang",
+      "district": "Hai Chau",
+      "mainImage" : 0,
+      "_attachments": {},
+      "menu": {
+        "cafe sua": {},
+        "tra da": {}
+      },
+      "dateCreate": "2015-04-01",
+      "isOperational": "true",
+      "rate": "3"
+    },{
+      "id": "abczyzitem4",
+      "title": "Say coffee",
+      "address": "Ly Tu Trong",
+      "phone": "0905xxxyyy",
+      "country": "vn",
+      "city": "Da Nang",
+      "district": "Hai Chau",
+      "mainImage" : 0,
+      "_attachments": {},
+      "menu": {
+        "cafe sua": {},
+        "tra da": {}
+      },
+      "dateCreate": "2015-04-01",
+      "isOperational": "true",
+      "rate": "3"
+    }
+  ]
+}
