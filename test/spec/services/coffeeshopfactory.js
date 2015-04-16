@@ -101,17 +101,84 @@ describe('Service: CoffeeShopFactory', function() {
       'isOperational': 'true',
       'rate': '3'
     });
-
     var menuItem1 = MenuItemFactory.create({
       'id': 'abcxyzmenuitem1',
       'title': 'Cafe Sua'
     });
 
     expect(shop1.addNewMenuItem).toBeDefined();
-    
-    shop1.addNewMenuItem('whiteCoffee', menuItem1);
+    // return 0 if added successfully
+    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
 
     expect(shop1.menu).toBeDefined();
     expect(shop1.menu.whiteCoffee).toBe(menuItem1);
   });
+
+  it('should not able to add a menuItem is conflicted', function() {
+    var shop1 = CoffeeShopFactory.create({
+      'id': 'abczyzitem1',
+      'title': 'Highland',
+      'address': 'Bach Dang',
+      'phone': '0905xxxyyy',
+      'country': 'vn',
+      'city': 'Da Nang',
+      'district': 'Hai Chau',
+      'mainImage': 0,
+      '_attachments': {},
+      'menu': {
+        'cafe sua': {},
+        'tra da': {}
+      },
+      'dateCreate': '2015-04-01',
+      'isOperational': 'true',
+      'rate': '3'
+    });
+    var menuItem1 = MenuItemFactory.create({
+      'id': 'abcxyzmenuitem1',
+      'title': 'Cafe Sua'
+    });
+
+    expect(shop1.addNewMenuItem).toBeDefined();
+    // return 0 if added successfully
+    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
+    // return 1 if added was conflict
+    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(1);
+
+    expect(shop1.menu).toBeDefined();
+    expect(shop1.menu.whiteCoffee).toBe(menuItem1);
+  });
+
+  it('should not able to add a menuItem was not enough attributes required', function() {
+    var shop1 = CoffeeShopFactory.create({
+      'id': 'abczyzitem1',
+      'title': 'Highland',
+      'address': 'Bach Dang',
+      'phone': '0905xxxyyy',
+      'country': 'vn',
+      'city': 'Da Nang',
+      'district': 'Hai Chau',
+      'mainImage': 0,
+      '_attachments': {},
+      'menu': {
+        'cafe sua': {},
+        'tra da': {}
+      },
+      'dateCreate': '2015-04-01',
+      'isOperational': 'true',
+      'rate': '3'
+    });
+    // menuItem1 losing attributes: 'id', 'price'
+    var menuItem1 = MenuItemFactory.create({
+      'id': null,
+      'title': 'Cafe Sua'
+    });
+
+    expect(shop1.addNewMenuItem).toBeDefined();
+    // return 2 if added failure
+    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(2);
+    expect(shop1.menu).toBeDefined();
+    expect(shop1.menu.whiteCoffee).not.toBeDefined();
+  });
+
+
 });
