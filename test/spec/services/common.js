@@ -13,6 +13,16 @@ describe('Service: Common', function () {
 
   describe('Test isObjJSON()', function() {
 
+    it('should return false when param is undefined', function () {
+      var isUndefined = undefined;
+      expect(common.isObjJSON(isUndefined)).toBe(false);
+    });
+
+    it('should return false when param is null', function () {
+      var isNull = null;
+      expect(common.isObjJSON(isNull)).toBe(false);
+    });
+
     it('should return false when param is a function', function () {
       var iFn = function() { return 'demo';};
       expect(common.isObjJSON(iFn)).toBe(false);
