@@ -11,7 +11,6 @@ angular.module('coffeeShopApp')
   .service('coffeeShopDB', function coffeeShopDB($q, $http, appSettings) {
 
     this.getAll = function() {
-        console.log(appSettings.db + '/_all_docs');
         $http.get(appSettings.db + '/_design/coffeeShops/_view/getAll')
         .success(function(data) {
             return data.rows;

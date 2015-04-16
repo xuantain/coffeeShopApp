@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Service: coffeeShopDB', function () {
+xdescribe('Service: coffeeShopDB', function () {
 
   // load the service's module
   beforeEach(module('coffeeShopApp'));
