@@ -50,4 +50,36 @@ describe('Service: Common', function () {
 
   });
 
+  describe('Test isNull()', function() {
+
+    it('Should be return true when param is undefined', function() {
+      var obj = undefined;
+      expect(common.isNull).toBeDefined();
+      expect(common.isNull(obj)).toBeTruthy();
+    });
+
+    it('Should be return true when param is null', function() {
+      var obj = null;
+      expect(common.isNull).toBeDefined();
+      expect(common.isNull(obj)).toBeTruthy();
+    });
+
+    it('Should be return true when param is blank string or empty string', function() {
+      var obj = '';
+      expect(common.isNull).toBeDefined();
+      expect(common.isNull(obj)).toBeTruthy();
+      obj = '  ';
+      expect(common.isNull(obj)).toBeTruthy();
+    });
+
+    it('Should be return false when param is object or string valid', function() {
+      var obj = {'id':'abc', 'title':'xyz'};
+      var str = 'This is string';
+      expect(common.isNull).toBeDefined();
+      expect(common.isNull(obj)).toBeFalsy();
+      expect(common.isNull(str)).toBeFalsy();
+    });
+
+  });
+
 });
