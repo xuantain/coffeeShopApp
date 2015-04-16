@@ -94,7 +94,6 @@ describe('Service: CoffeeShopFactory', function() {
       'mainImage': 0,
       '_attachments': {},
       'menu': {
-        'cafe sua': {},
         'tra da': {}
       },
       'dateCreate': '2015-04-01',
@@ -103,7 +102,8 @@ describe('Service: CoffeeShopFactory', function() {
     });
     var menuItem1 = MenuItemFactory.create({
       'id': 'abcxyzmenuitem1',
-      'title': 'Cafe Sua'
+      'title': 'Cafe Sua',
+      'price': '7000VND'
     });
 
     expect(shop1.addNewMenuItem).toBeDefined();
@@ -126,7 +126,6 @@ describe('Service: CoffeeShopFactory', function() {
       'mainImage': 0,
       '_attachments': {},
       'menu': {
-        'cafe sua': {},
         'tra da': {}
       },
       'dateCreate': '2015-04-01',
@@ -135,7 +134,8 @@ describe('Service: CoffeeShopFactory', function() {
     });
     var menuItem1 = MenuItemFactory.create({
       'id': 'abcxyzmenuitem1',
-      'title': 'Cafe Sua'
+      'title': 'Cafe Sua',
+      'price': '7000VND'
     });
 
     expect(shop1.addNewMenuItem).toBeDefined();

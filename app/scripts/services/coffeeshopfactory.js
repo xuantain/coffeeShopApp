@@ -8,7 +8,7 @@
  * Service in the coffeeShopApp.
  */
 angular.module('coffeeShopApp')
-  .factory('CoffeeShopFactory', function() {
+  .factory('CoffeeShopFactory', function (Common) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     var coffeeShopFunctionality = {
@@ -48,15 +48,22 @@ angular.module('coffeeShopApp')
         }
       }
 
+      // Return 0: successfully; 1: conflict; 2: failure;
       shopWithFunctionality.addNewMenuItem = function(name, menuItem) {
-        if(menuItem !== null) {
-          this.menu[name] = menuItem;
-          // Add new menuItem to menu
+        if(!Common.isObjJSON(menuItem) || Common.isNull(menuItem.id) || 
+            Common.isNull(menuItem.title) || Common.isNull(menuItem.price)
+          ) {
+          return 2;
         }
-      };
+        if(this.menu[name] === menuItem) {
+          return 1;
+        }
+        this.menu[name] = menuItem;
+        return 0;
+      }; // End of shopWithFunctionality.addNewMenuItem
 
       return shopWithFunctionality;
-    };
+    }; // End of CreateFn
 
     return {
       create: createFn

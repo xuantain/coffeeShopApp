@@ -21,6 +21,7 @@ describe('Service: MenuItemFactory', function () {
     expect(item1).toEqual({
       'id': 'abcxyzmenuitem1',
       'title': 'cafe Sua',
+      'category': '',
       'price': '',
       'description': ''
     });

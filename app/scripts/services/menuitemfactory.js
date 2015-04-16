@@ -16,9 +16,11 @@ angular.module('coffeeShopApp')
       }
     };
 
+    // Attributes required: 'id', 'title', 'price'
     var defaultAttributes = {
       'id': '',
       'title': '',
+      'category': '',
       'price': '',
       'description': ''
     };
