@@ -22,7 +22,7 @@
       <div id="theSameShops" class="row">
         <div class="col-sm-12">
           <h2>The shop is similar</h2>
-          <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.title"/>
+          <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.key.title"/>
         </div>
       </div>
     </div>

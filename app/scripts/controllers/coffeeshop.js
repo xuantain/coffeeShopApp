@@ -9,8 +9,6 @@
  */
 angular.module('coffeeShopApp')
   .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common, coffeeShopDB) {
-    
-    var data = coffeeShopDB.getAll();
 
     var demoCoffeeShops = [
       {
@@ -34,9 +32,19 @@ angular.module('coffeeShopApp')
         'phone': '0123654789'
       }
     ];
-    $scope.coffeeShops = {};
+
+    $scope.fetchDataFromDB = function(returData) {
+      if (returData) {
+        $scope.coffeeShops = [];
+        for (var i = returData.length - 1; i >= 0; i--) {
+          $scope.coffeeShops.push(returData[i].key);
+        }
+      }
+    };
+
+    $scope.coffeeShops = [];
   	var shopsInStore = localStorageService.get('coffeeShops');
-  	$scope.coffeeShops = shopsInStore || demoCoffeeShops;//[];
+  	$scope.coffeeShops = shopsInStore || demoCoffeeShops;
   	$scope.$watch(function(){
   		localStorageService.set('coffeeShops', $scope.coffeeShops);
   	}, true);
@@ -92,4 +100,6 @@ angular.module('coffeeShopApp')
       throw new Error(shop + ' is not exist!');
     };
 
+    coffeeShopDB.getAll($scope.fetchDataFromDB);
+    
   });
