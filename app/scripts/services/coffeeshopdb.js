@@ -10,13 +10,15 @@
 angular.module('coffeeShopApp')
   .service('coffeeShopDB', function coffeeShopDB($q, $http, appSettings) {
 
-    this.getAll = function() {
-        $http.get(appSettings.db + '/_design/coffeeShops/_view/getAll')
+    this.getAll = function(sucessFunction, failFunction) {
+        $http.get(appSettings.db + '/_design/pages/_view/getAll')
         .success(function(data) {
-            return data.rows;
+            // Can call another function as a callback or simply write in the variable
+            sucessFunction(data.rows);
+            return;
         })
-        .error(function() {
-            alert('an error ocurred');
+        .error(function(errorItem) {
+            alert('an error ocurred in Get All' + errorItem);
         });
     };
     this.getAllByCountry = function(country) {};
@@ -24,22 +26,23 @@ angular.module('coffeeShopApp')
     this.getAllByDistrict = function(district) {};
     this.getAllByLocation = function(location) {};
     this.getByName = function(name) {
-    	$http.get(appSettings.db + '/_design/coffeeShops/_view/getByLocation')
+    	$http.get(appSettings.db + '/_design/pages/_view/getByLocation')
     	.success(function(data) {
-            return data.rows;
+            // Can call another function as a callback or simply write in the variable
+            return;
     	})
     	.error(function() {
-    		alert('an error ocurred');
+    		alert('an error ocurred in getByLocation');
     	});
     };
 
     this.put = function() {
-        $http.put(appSettings.db + '/_design/coffeeShops/_view/getByLocation')
+        $http.put(appSettings.db + '/_design/pages/_view/getByLocation')
         .success(function(data) {
             return data.rows;
         })
         .error(function() {
-            alert('an error ocurred');
+            alert('an error ocurred in getByLocation 2');
         });  
     };
     this.update = function(coffeeShop) {};
