@@ -29,6 +29,7 @@ angular.module('coffeeShopApp')
       'menu': {},
       'dateCreate': '',
       'isOperational': '',
+      'openingTimes': '',
       'rate': ''
     };
 

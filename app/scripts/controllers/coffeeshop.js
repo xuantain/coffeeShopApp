@@ -10,29 +10,6 @@
 angular.module('coffeeShopApp')
   .controller('CoffeeshopCtrl', function ($scope, localStorageService, Common, coffeeShopDB) {
 
-    var demoCoffeeShops = [
-      {
-        'title': 'HighLand',
-        'address': 'Bach Dang',
-        'phone': '1234567890'
-      },
-      {
-        'title': 'Billiard 34',
-        'address': 'Thai Phien',
-        'phone': '1230987456'
-      },
-      {
-        'title': 'Cherry',
-        'address': 'Nguyen Chi Thanh',
-        'phone': '0123654789'
-      },
-      {
-        'title': 'Coc',
-        'address': 'Quang Trung',
-        'phone': '0123654789'
-      }
-    ];
-
     $scope.fetchDataFromDB = function(returData) {
       if (returData) {
         $scope.coffeeShops = [];
@@ -41,13 +18,6 @@ angular.module('coffeeShopApp')
         }
       }
     };
-
-    $scope.coffeeShops = [];
-  	var shopsInStore = localStorageService.get('coffeeShops');
-  	$scope.coffeeShops = shopsInStore || demoCoffeeShops;
-  	$scope.$watch(function(){
-  		localStorageService.set('coffeeShops', $scope.coffeeShops);
-  	}, true);
 
   	$scope.addNewShop = function() {
       if(Common.isObjJSON($scope.shop) && (undefined !== $scope.shop.title) && 
@@ -100,6 +70,11 @@ angular.module('coffeeShopApp')
       throw new Error(shop + ' is not exist!');
     };
 
-    coffeeShopDB.getAll($scope.fetchDataFromDB);
+    $scope.$watch(function(){
+      localStorageService.set('coffeeShops', $scope.coffeeShops);
+    }, true);
+
+    var shopsInStore = localStorageService.get('coffeeShops');
+    $scope.coffeeShops = shopsInStore || coffeeShopDB.getAll($scope.fetchDataFromDB);
     
   });

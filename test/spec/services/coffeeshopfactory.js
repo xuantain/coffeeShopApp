@@ -29,6 +29,7 @@ describe('Service: CoffeeShopFactory', function() {
       },
       'dateCreate': '2015-04-01',
       'isOperational': 'true',
+      'openingTimes': '7hAM-10hPM',
       'rate': '3'
     });
 
@@ -39,6 +40,7 @@ describe('Service: CoffeeShopFactory', function() {
   it('should be create complete coffee shops', function() {
     var shop1 = CoffeeShopFactory.create({
       'id': 'abczyzitem1',
+      'openingTimes': '7hAM-10hPM',
       'title': 'Highland'
     });
 
@@ -54,6 +56,7 @@ describe('Service: CoffeeShopFactory', function() {
     expect(shop1.menu).toEqual(Object({}));
     expect(shop1.dateCreate).toEqual('');
     expect(shop1.isOperational).toEqual('');
+    expect(shop1.openingTimes).toEqual('7hAM-10hPM');
     expect(shop1.rate).toEqual('');
   });
 
@@ -74,6 +77,7 @@ describe('Service: CoffeeShopFactory', function() {
       },
       'dateCreate': '2015-04-01',
       'isOperational': 'true',
+      'openingTimes': '7hAM-10hPM',
       'rate': '3'
     });
 
@@ -82,103 +86,79 @@ describe('Service: CoffeeShopFactory', function() {
     expect(shop1.dateModified).toBeDefined();
   });
 
-  it('should be able to add new menuItem', function() {
-    var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
-      'title': 'Highland',
-      'address': 'Bach Dang',
-      'phone': '0905xxxyyy',
-      'country': 'vn',
-      'city': 'Da Nang',
-      'district': 'Hai Chau',
-      'mainImage': 0,
-      '_attachments': {},
-      'menu': {
-        'tra da': {}
-      },
-      'dateCreate': '2015-04-01',
-      'isOperational': 'true',
-      'rate': '3'
-    });
-    var menuItem1 = MenuItemFactory.create({
-      'id': 'abcxyzmenuitem1',
-      'title': 'Cafe Sua',
-      'price': '7000VND'
-    });
+  describe('Test functionality addNewMenuItem(newItem)', function() {
 
-    expect(shop1.addNewMenuItem).toBeDefined();
-    // return 0 if added successfully
-    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
+    var shop1;
 
-    expect(shop1.menu).toBeDefined();
-    expect(shop1.menu.whiteCoffee).toBe(menuItem1);
-  });
-
-  it('should not able to add a menuItem is conflicted', function() {
-    var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
-      'title': 'Highland',
-      'address': 'Bach Dang',
-      'phone': '0905xxxyyy',
-      'country': 'vn',
-      'city': 'Da Nang',
-      'district': 'Hai Chau',
-      'mainImage': 0,
-      '_attachments': {},
-      'menu': {
-        'tra da': {}
-      },
-      'dateCreate': '2015-04-01',
-      'isOperational': 'true',
-      'rate': '3'
-    });
-    var menuItem1 = MenuItemFactory.create({
-      'id': 'abcxyzmenuitem1',
-      'title': 'Cafe Sua',
-      'price': '7000VND'
+    beforeEach(function() {
+      shop1 = CoffeeShopFactory.create({
+        'id': 'abczyzitem1',
+        'title': 'Highland',
+        'address': 'Bach Dang',
+        'phone': '0905xxxyyy',
+        'country': 'vn',
+        'city': 'Da Nang',
+        'district': 'Hai Chau',
+        'mainImage': 0,
+        '_attachments': {},
+        'menu': {
+          'tra da': {}
+        },
+        'dateCreate': '2015-04-01',
+        'isOperational': 'true',
+        'openingTimes': '7hAM-10hPM',
+        'rate': '3'
+      });
     });
 
-    expect(shop1.addNewMenuItem).toBeDefined();
-    // return 0 if added successfully
-    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
-    // return 1 if added was conflict
-    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(1);
+    it('should be able to add new menuItem', function() {
+      var menuItem1 = MenuItemFactory.create({
+        'id': 'abcxyzmenuitem1',
+        'title': 'Cafe Sua',
+        'price': '7000VND'
+      }); 
 
-    expect(shop1.menu).toBeDefined();
-    expect(shop1.menu.whiteCoffee).toBe(menuItem1);
-  });
+      expect(shop1.addNewMenuItem).toBeDefined();
+      // return 0 if added successfully
+      expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
 
-  it('should not able to add a menuItem was not enough attributes required', function() {
-    var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
-      'title': 'Highland',
-      'address': 'Bach Dang',
-      'phone': '0905xxxyyy',
-      'country': 'vn',
-      'city': 'Da Nang',
-      'district': 'Hai Chau',
-      'mainImage': 0,
-      '_attachments': {},
-      'menu': {
-        'cafe sua': {},
-        'tra da': {}
-      },
-      'dateCreate': '2015-04-01',
-      'isOperational': 'true',
-      'rate': '3'
-    });
-    // menuItem1 losing attributes: 'id', 'price'
-    var menuItem1 = MenuItemFactory.create({
-      'id': null,
-      'title': 'Cafe Sua'
+      expect(shop1.menu).toBeDefined();
+      expect(shop1.menu.whiteCoffee).toBe(menuItem1);
     });
 
-    expect(shop1.addNewMenuItem).toBeDefined();
-    // return 2 if added failure
-    expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(2);
-    expect(shop1.menu).toBeDefined();
-    expect(shop1.menu.whiteCoffee).not.toBeDefined();
-  });
+    it('should not able to add a menuItem is conflicted', function() {
+      var menuItem1 = MenuItemFactory.create({
+        'id': 'abcxyzmenuitem1',
+        'title': 'Cafe Sua',
+        'price': '7000VND'
+      });
 
+      expect(shop1.addNewMenuItem).toBeDefined();
+      // return 0 if added successfully
+      expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
+      // return 1 if added was conflict
+      expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(1);
+
+      expect(shop1.menu).toBeDefined();
+      expect(shop1.menu.whiteCoffee).toBe(menuItem1);
+    });
+
+    it('should not able to add a menuItem was not enough attributes required', function() {
+      // menuItem1 losing attributes: 'id', 'price'
+      var menuItem1 = MenuItemFactory.create({
+        'id': null,
+        'title': 'Cafe Sua'
+      });
+
+      expect(shop1.addNewMenuItem).toBeDefined();
+      // return 2 if added failure
+      expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(2);
+      expect(shop1.menu).toBeDefined();
+      expect(shop1.menu.whiteCoffee).not.toBeDefined();
+    });
+
+  }); // End of Test for functionality addNewMenuItem(newItem)
+
+  describe('Test functionality update()');
 
 });
