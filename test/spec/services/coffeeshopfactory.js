@@ -159,6 +159,8 @@ describe('Service: CoffeeShopFactory', function() {
 
   }); // End of Test for functionality addNewMenuItem(newItem)
 
-  describe('Test functionality update()');
+  describe('Test functionality update()',function(){
+    
+  });
 
 });
