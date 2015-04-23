@@ -18,7 +18,7 @@ angular.module('coffeeShopApp')
     };
 
     var defaultAttributes = {
-      'id': '',
+      '_id': '',
       'title': '',
       'address': '',
       'phone': '',
