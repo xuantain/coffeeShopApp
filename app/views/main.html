@@ -1,40 +1,115 @@
-<div class="container">
-  <form role="form" ng-submit="addNewShop()">
-    <div class="col-sm-4">
-      <div class="input-group row">
-        <div class="col-sm-12">
-          <label for="title">Title:</label>
-          <input id="title" type="text" ng-model="shop.title" class="col-sm-12" placeHolder="Type new coffee's title" required />  
-        </div>
-        <div class="col-sm-12">
-          <label for="address">Address:</label>
-          <input id="address" type="text" ng-model="shop.address" class="col-sm-12" placeHolder="Type new coffee's address"/>
-        </div>
-        <div class="col-sm-12">
-          <label for="phone">Phone:</label>
-          <input id="phone" type="text" ng-model="shop.phone" class="col-sm-12" placeHolder="Type new coffee's phone"/>
-        </div>
-        <span class="col-sm-12" style="padding: 10px 15px; cursor: point;">
-          <input type="submit" class="btn-private col-sm-12" value="Add New"/>
-        </span>
-      </div>
+<div style="margin-top: 20px;">
 
-      <div id="theSameShops" class="row">
-        <div class="col-sm-12">
-          <h2>The shop is similar</h2>
-          <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.key.title"/>
-        </div>
+  <div>
+    <div class="col-xs-11 col-sm-11"></div>
+    <div class="col-xs-1 col-sm-1">
+      <div class="input-group">
+        <button id="menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" style="border: none; border-radius: 4px;"> <i class="fa fa-bars fa-2x"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">HTML</a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">CSS</a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">JavaScript</a>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="#">About Us</a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </form>
-
-  <div class="col-sm-6">
-    <h2>Searching</h2>
-    <div class="input-group">
-      <input type="text" class="text-box col-sm-12" ng-model="query" ng-change="theSameShops = []" />
-    </div>
-    <div ui-sortable ng-model="coffeeShops" style="margin-top:10px; max-height:40em;">
-      <coffee-shop class="repeated-item" ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
     </div>
   </div>
+
+  <!-- Localtion-condition -->
+  <div id="location-search" class="col-xs-12 col-sm-12">
+
+    <!-- Country -->
+    <div class="dropdown">
+      <button id="country" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+        <span class="flag-icon flag-icon-vn" style="height: 30px; width: 30px;"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+            <span class="flag-icon flag-icon-gr" style="height: 30px; width: 30px;"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- City -->
+    <div class="dropdown">
+      <button id="city" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+        DaNang City
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Ho Chi Minh</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Ha Noi</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Hoi An</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Distrist -->
+    <div class="dropdown">
+      <button id="distrist" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+        HaiChau Distrist
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Thanh Khe</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Lien Chieu</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Son Tra</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Street -->
+    <div class="dropdown">
+      <button id="street" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+        Nguyen Chi Thanh Street
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Le Duan</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Bach Dang</a>
+        </li>
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">Tran Phu</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Finding -->
+  <div class="col-xs-12 col-sm-12" style="margin: 10px 0px; line-height: 30px; font-size: 1.5em;">
+    <input type="text" class="col-xs-10 col-sm-10" placeholder="Find your coffee shop" ng-model="query" ng-change="theSameShops = []" />
+    <span class="col-sm-1 glyphicon glyphicon-search" aria-hidden="true" style="line-height: 35px;"></span>
+  </div>
+
+  <!-- Results -->
+  <div ui-sortable ng-model="coffeeShops" class="col-xs-12 col-sm-12">
+    <coffee-shop class="repeated-item" ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
+  </div>
+
 </div>

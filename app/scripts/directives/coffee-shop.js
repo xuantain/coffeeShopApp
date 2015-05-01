@@ -11,6 +11,7 @@ angular.module('coffeeShopApp')
 		return {
 			templateUrl: $templateCache.get('coffee-shop'),
 			restrict: 'E',
+            replace: true,
 			link: function postLink() {},
 			controller: function($scope) {
 				$scope.addPictures = function() {
@@ -52,7 +53,7 @@ angular.module('coffeeShopApp')
 					var ft = new FileTransfer(),
 						path = mediaFile.fullPath,
 						name = mediaFile.name;
-
+						
 					ft.upload(path,
 						'https://coffeeshop.iriscouch.com/coffee_shops/' + $scope.coffeeShop._id,
 						function(result) {

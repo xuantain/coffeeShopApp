@@ -1,0 +1,30 @@
+<form role="form" ng-submit="addNewShop()">
+
+  <!-- Form add new coffee-shop -->
+  <div class="input-group row">
+    <div class="col-sm-12">
+      <label for="title">Title:</label>
+      <input id="title" type="text" ng-model="shop.title" class="col-sm-12" placeHolder="Type new coffee's title" required />
+    </div>
+    <div class="col-sm-12">
+      <label for="address">Address:</label>
+      <input id="address" type="text" ng-model="shop.address" class="col-sm-12" placeHolder="Type new coffee's address"/>
+    </div>
+    <div class="col-sm-12">
+      <label for="phone">Phone:</label>
+      <input id="phone" type="text" ng-model="shop.phone" class="col-sm-12" placeHolder="Type new coffee's phone"/>
+    </div>
+    <span class="col-sm-12" style="padding: 10px 15px; cursor: point;">
+      <input type="submit" class="btn-private col-sm-12" value="Add New"/>
+    </span>
+  </div>
+
+  <!-- The same results -->
+  <div id="theSameShops" class="row">
+    <div class="col-sm-12">
+      <h2>The shop is similar</h2>
+      <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.key.title"/>
+    </div>
+  </div>
+
+</form>

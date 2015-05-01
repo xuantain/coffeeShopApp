@@ -70,6 +70,14 @@ angular.module('coffeeShopApp')
       throw new Error(shop + ' is not exist!');
     };
 
+    $scope.updateData = function() {
+      try {
+        $scope.coffeeShops = coffeeShopDB.getAll($scope.fetchDataFromDB);
+      } catch (error) {
+        alert('Occur error when updateData() ' + error);
+      }
+    };
+
     $scope.$watch(function(){
       localStorageService.set('coffeeShops', $scope.coffeeShops);
     }, true);

@@ -69,4 +69,4 @@ angular.module('coffeeShopApp')
     return {
       create: createFn
     };
-  });
+});

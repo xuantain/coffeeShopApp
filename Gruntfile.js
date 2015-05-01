@@ -196,9 +196,18 @@ module.exports = function(grunt) {
 
     // The following *-min tasks produce minified files in the dist folder
     cssmin: {
-      options: {
-        root: '<%= yeoman.app %>'
-      }
+      // options: {
+      //   root: '<%= yeoman.app %>'
+      // },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css',
+            '<%= yeoman.app %>/styles/{,*/}*.css'
+          ]
+        }
+      },
+      'dist\\styles\\main.css': 'dist\\styles\\main.css'
     },
 
     // imagemin: {
@@ -318,7 +327,8 @@ module.exports = function(grunt) {
     //         '<%= yeoman.app %>/styles/{,*/}*.css'
     //       ]
     //     }
-    //   }
+    //   },
+    //   'dist\\styles\\main.css': 'dist\\styles\\main.css'
     // },
     // uglify: {
     //   dist: {
@@ -405,18 +415,22 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     // 'bowerInstall',
+    // 'jshint',
+    // 'test',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
     'cssmin',
+    'htmlmin',
+    'copy',
+    'cdnify',
+    'ngmin',
     'uglify',
     'rev',
-    'usemin',
-    'htmlmin'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [

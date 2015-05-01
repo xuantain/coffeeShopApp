@@ -99,3 +99,14 @@ body {
     border-bottom: 0;
   }
 }
+
+#location-search {
+  border-bottom: 1px solid #e5e5e5;
+}
+#location-search .dropdown {
+  display: inline-block;
+}
+#location-search .dropdown button {
+  border: none;
+  color: #428bca;
+}
