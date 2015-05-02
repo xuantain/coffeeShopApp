@@ -1,20 +1,24 @@
-<div class="shop">
-  
-  <div class="col-xs-12 col-sm-12 btn btn-default">
-  	<div class="col-xs-11 col-sm-11 text-left">
-  		<h3 style="display:inline-block; margin:15px 0 10px">{{shop.title}}</h3> - {{shop.address}} - {{shop.phone}}
-  	</div>
-  	<div class="col-xs-1 col-sm-1">
-      <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="line-height: 50px;"></span>
-  	</div>
+<div class="shop col-xs-12 col-sm-12 btn btn-default">
+
+  <div class="col-xs-11 col-sm-11 text-left" ng-click="isShowContent = !isShowContent">
+    <h3 style="display:inline-block; margin:15px 0 10px">{{shop.title}}</h3>
+    - {{shop.address}} - {{shop.phone}}
+  </div>
+  <div class="col-xs-1 col-sm-1">
+    <span ng-class="isOpenDetail()" aria-hidden="true" style="line-height: 50px;" />
   </div>
 
-  <div class="col" style="display: none;">
-    <div class="shop-content"></div>
+  <!-- show detail -->
+  <div class="shop-content" ng-show="isShowContent">
+    <div class="col-xs-10 col-sm-10 text-left">
+      <img src="images/yeoman.png">
+      <p>Opening times: {{shop.openingTimes}}</p>
+      <p><a href="#/details/{{coffeeShops.indexOf(shop)}}">Show detail</a></p>
+    </div>
     <div class="col-xs-2 col-sm-2">
-      <button class="btn btn-primary" ng-click="addPictures()"><i class="fa fa-camera"></i>Add Pictures</button>
+      <button class="btn btn-primary" ng-click="addPictures()"> <i class="fa fa-camera"></i>
+      </button>
       <button class="btn btn-danger" ng-click="removeShop(shop)" aria-label="Remove">X</button>
     </div>
   </div>
-
 </div>

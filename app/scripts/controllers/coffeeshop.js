@@ -78,6 +78,33 @@ angular.module('coffeeShopApp')
       }
     };
 
+    $scope.getLocation = function() {
+      $.ajax( { 
+        url: '//freegeoip.net/json/', 
+        type: 'POST', 
+        dataType: 'jsonp',
+        success: function(location) {
+          // example where I update content on the page.
+          // $('#city').html(location.city);
+          // $('#region-code').html(location.region_code);
+          // $('#region-name').html(location.region_name);
+          // $('#areacode').html(location.areacode);
+          // $('#ip').html(location.ip);
+          // $('#zipcode').html(location.zipcode);
+          // $('#longitude').html(location.longitude);
+          // $('#latitude').html(location.latitude);
+          // $('#country-name').html(location.country_name);
+          // $('#country-code').html(location.country_code);
+          $scope.country_code = location.country_code.toLowerCase();
+          console.log(location.country_code);
+          console.log(location.city);
+          console.log(location.areacode);
+        }
+      });
+    };
+
+    $scope.getLocation();
+
     $scope.$watch(function(){
       localStorageService.set('coffeeShops', $scope.coffeeShops);
     }, true);

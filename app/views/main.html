@@ -1,20 +1,16 @@
 <div style="margin-top: 20px;">
 
+  <button type="button" ng-click="getLocation()">getLocation</button>
+  <span id="country-code"></span>
   <div>
     <div class="col-xs-11 col-sm-11"></div>
     <div class="col-xs-1 col-sm-1">
-      <div class="input-group">
+      <div class="input-group-btn">
         <button id="menu" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" style="border: none; border-radius: 4px;"> <i class="fa fa-bars fa-2x"></i>
         </button>
         <ul class="dropdown-menu dropdown-menu-right" role="menu">
           <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#">HTML</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#">CSS</a>
-          </li>
-          <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#">JavaScript</a>
+            <a role="menuitem" tabindex="-1" href="#/add-new">Add new</a>
           </li>
           <li role="presentation" class="divider"></li>
           <li role="presentation">
@@ -31,7 +27,7 @@
     <!-- Country -->
     <div class="dropdown">
       <button id="country" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-        <span class="flag-icon flag-icon-vn" style="height: 30px; width: 30px;"></span>
+        <span class="flag-icon flag-icon-{{country_code}}" style="height: 30px; width: 30px;"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li role="presentation">

@@ -16,6 +16,7 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
+      "openingTimes": "7:00 AM - 22:00 PM",
       "rate": "3"
     },{
       "id": "abczyzitem2",
@@ -33,6 +34,7 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
+      "openingTimes": "7:00 AM - 22:00 PM",
       "rate": "3"
     },{
       "id": "abczyzitem3",
@@ -50,6 +52,7 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
+      "openingTimes": "7:00 AM - 22:00 PM",
       "rate": "3"
     },{
       "id": "abczyzitem4",
@@ -67,6 +70,7 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
+      "openingTimes": "7:00 AM - 22:00 PM",
       "rate": "3"
     }
   ]

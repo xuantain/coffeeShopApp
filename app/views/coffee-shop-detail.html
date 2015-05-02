@@ -1,0 +1,73 @@
+<form role="form" ng-submit="addNewShop()">
+
+  <!-- Form add new coffee-shop -->
+  <div class="row" style="margin-top: 20px;">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" type="text" class="form-control" ng-model="shop.title" placeholder="Type new coffee's title" required >
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input id="address" type="text" class="form-control" ng-model="shop.address" placeHolder="Type new coffee's address"/>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input id="phone" type="text" class="form-control" ng-model="shop.phone" placeHolder="Type new coffee's phone"/>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <select id="country" class="form-control" ng-model="shop.country">
+        <option>VietNam</option>
+        <option>Canada</option>
+        <option>...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <select id="city" class="form-control" ng-model="shop.city">
+        <option>VietNam</option>
+        <option>Canada</option>
+        <option>...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="district">District</label>
+      <select id="district" class="form-control" ng-model="shop.district">
+        <option>VietNam</option>
+        <option>Canada</option>
+        <option>...</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="openTimes">Open Times</label>
+      <input id="openTimes" type="time" >
+      <label for="openTimes">Close Times</label>
+      <input id="closeTimes" type="time" >
+    </div>
+
+    <div class="form-group">
+      <label for="menu">Menu</label>
+      <input id="menu" type="text" class="form-control" ng-model="shop.menu" placeHolder="Type new coffee's menu"/>
+      <button class="btn btn-primary" ng-click="addNewMenuItem()"><i class="glyphicon glyphicon-plus"></i>
+      </button>
+    </div>
+
+    <input class="btn btn-private col-sm-12" type="submit" value="Submit">
+
+  </div>
+
+  <!-- The same results -->
+  <div id="theSameShops" class="row">
+    <div class="col-sm-12">
+      <h2>The shop is similar</h2>
+      <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.key.title"/>
+    </div>
+  </div>
+
+</form>

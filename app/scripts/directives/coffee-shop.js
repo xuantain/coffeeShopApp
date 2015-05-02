@@ -11,8 +11,8 @@ angular.module('coffeeShopApp')
 		return {
 			templateUrl: $templateCache.get('coffee-shop'),
 			restrict: 'E',
-            replace: true,
-			link: function postLink() {},
+      replace: true,
+			link: function(scope, element, attrs) {},
 			controller: function($scope) {
 				$scope.addPictures = function() {
 					if (!$scope.shop || !$scope.shop._id) {
@@ -43,7 +43,7 @@ angular.module('coffeeShopApp')
 						limit: 2
 					});
 					return true;
-				};
+				}; // End of method addPictures()
 
 				$scope.uploadFile = function(mediaFile) {
 					if (!$scope.shop || !$scope.shop._id) {
@@ -53,7 +53,7 @@ angular.module('coffeeShopApp')
 					var ft = new FileTransfer(),
 						path = mediaFile.fullPath,
 						name = mediaFile.name;
-						
+
 					ft.upload(path,
 						'https://coffeeshop.iriscouch.com/coffee_shops/' + $scope.coffeeShop._id,
 						function(result) {
@@ -68,7 +68,15 @@ angular.module('coffeeShopApp')
 							fileName: name
 						});
 					return true;
+				}; // End of method uploadFile()
+				
+				$scope.isOpenDetail = function() {
+					if($scope.isShowContent) {
+						return 'glyphicon glyphicon-chevron-up';
+					}
+					return 'glyphicon glyphicon-chevron-down';
 				};
+
 			}
 		};
 	});
