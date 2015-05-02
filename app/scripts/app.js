@@ -48,6 +48,14 @@ angular
         templateUrl: 'views/main.html',
         controller: 'CoffeeshopCtrl'
       })
+      .when('/add-new', {
+        templateUrl: 'views/coffee-shop-detail.html',
+        controller: 'CoffeeshopdetailCtrl'
+      })
+      .when('/details/:shopID', {
+        templateUrl: 'views/coffee-shop-detail.html',
+        controller: 'CoffeeshopDetailCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
