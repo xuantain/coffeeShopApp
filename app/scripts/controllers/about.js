@@ -9,4 +9,5 @@
  */
 angular.module('coffeeShopApp')
   .controller('AboutCtrl', function ($scope) {
+  	
   });
