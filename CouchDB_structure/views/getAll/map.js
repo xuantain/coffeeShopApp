@@ -1,13 +1,15 @@
 function(doc) {
 	try {
 		// Try, ifs, filter and emit something.
-
-		emit({
+		var keys = {
 			title: doc.title, 
 			address: doc.address, 
 			phone: doc.phone
-		}, doc);
+		},
+		returns = doc._id;
 
+		emit(keys, returns);
+		
 	} catch (e) {
 		//error with this document.
 	}

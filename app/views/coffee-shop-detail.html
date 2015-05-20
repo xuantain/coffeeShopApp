@@ -1,73 +1,133 @@
-<form role="form" ng-submit="addNewShop()">
 
   <!-- Form add new coffee-shop -->
   <div class="row" style="margin-top: 20px;">
-    <div class="form-group">
+    <div class="form-group col-sm-12 col-md-6">
       <label for="title">Title</label>
       <input id="title" type="text" class="form-control" ng-model="shop.title" placeholder="Type new coffee's title" required >
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-sm-12 col-md-6">
       <label for="address">Address</label>
       <input id="address" type="text" class="form-control" ng-model="shop.address" placeHolder="Type new coffee's address"/>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-sm-12 col-md-6">
+      <div class="col-sm-6 col-md-6" style="margin-left: -15px;">
+        <label for="openTimes">Open Times </label>
+        <input id="openTimes" type="time" class="form-control" value="{{shop.openTimes}}" >
+      </div>
+      <div class="col-sm-6 col-md-6" style="margin-left: 30px; margin-right: -15px;">
+        <label for="openTimes">Close Times </label>
+        <input id="closeTimes" type="time" class="form-control" value="{{shop.closeTimes}}" >
+      </div>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-6">
+      <label for="country">Country</label>
+      <select id="country" class="form-control" ng-model="shop.locate.country">
+        <option value="vn" checked="checked" >VietNam</option>
+        <option value="ca">Canada</option>
+        <option>...</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-12 col-md-6">
       <label for="phone">Phone</label>
       <input id="phone" type="text" class="form-control" ng-model="shop.phone" placeHolder="Type new coffee's phone"/>
     </div>
 
-    <div class="form-group">
-      <label for="country">Country</label>
-      <select id="country" class="form-control" ng-model="shop.country">
-        <option>VietNam</option>
-        <option>Canada</option>
-        <option>...</option>
-      </select>
-    </div>
-
-    <div class="form-group">
+    <div class="form-group col-sm-12 col-md-6">
       <label for="city">City</label>
-      <select id="city" class="form-control" ng-model="shop.city">
-        <option>VietNam</option>
-        <option>Canada</option>
+      <select id="city" class="form-control ui-widget" ng-model="shop.locate.city">
+        <option>Da Nang</option>
+        <option>Ha Noi</option>
         <option>...</option>
       </select>
     </div>
-
-    <div class="form-group">
-      <label for="district">District</label>
-      <select id="district" class="form-control" ng-model="shop.district">
-        <option>VietNam</option>
-        <option>Canada</option>
-        <option>...</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="openTimes">Open Times</label>
-      <input id="openTimes" type="time" >
-      <label for="openTimes">Close Times</label>
-      <input id="closeTimes" type="time" >
-    </div>
-
-    <div class="form-group">
-      <label for="menu">Menu</label>
-      <input id="menu" type="text" class="form-control" ng-model="shop.menu" placeHolder="Type new coffee's menu"/>
-      <button class="btn btn-primary" ng-click="addNewMenuItem()"><i class="glyphicon glyphicon-plus"></i>
-      </button>
-    </div>
-
-    <input class="btn btn-private col-sm-12" type="submit" value="Submit">
-
   </div>
 
   <!-- The same results -->
-  <div id="theSameShops" class="row">
+  <div id="theSameShops" class="row" ng-show="false">
     <div class="col-sm-12">
       <h2>The shop is similar</h2>
       <coffee-shop-similar class="repeated-item" ng-repeat="shop in theSameShops | firstLetterFilter:shop.key.title"/>
     </div>
   </div>
 
-</form>
+  <map zoom="18" 
+    center="[{{shop.locate.latitude}}, {{shop.locate.longitude}}]" 
+    on-click="mapclick(data)" 
+    draggable-cursor="crosshair"
+    max-zoom="20"
+    min-zoom="12"
+    >
+    <marker
+      position="[{{shop.locate.latitude}}, {{shop.locate.longitude}}]"
+      title="{{shop.title}}"
+      animation="Animation.BOUNCE"
+      draggable="true"
+      visible="true"
+      icon="images/beachflag.png">
+    </marker>
+    <marker
+      position="[{{latitude}}, {{longitude}}]"
+      title="New shop"
+      animation="Animation.BOUNCE"
+      draggable="true"
+      visible="true"
+      icon="images/beachflag.png">
+    </marker>
+    <!-- <shape 
+      id="image" 
+      name="image" 
+      url="images/coffee-shop-icon.png"
+      bounds="[[21.033020, 105.85005],[21.033170, 105.85025]]" 
+      opacity="0.7" 
+      clickable="true" >
+    </shape>
+    <shape 
+      id="circle" 
+      name="circle" 
+      stroke-color='#FF0000'
+      stroke-opacity="1"
+      stroke-weight="1" 
+      center="[21.033110, 105.85015]" 
+      radius="5" 
+      editable="false" /> -->
+  </map>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="form-group col-sm-12 col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Menu</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Currency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="repeated-item" ng-repeat="(key, info) in shop.menu">
+              <td><img src="images/coffee-shop-icon.png" alt="coffee" style="width: 30px;"></td>
+              <td>{{key}}</td>
+              <td>{{info.price}}</td>
+              <td>{{info.currency}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary col-sm-1 col-md-1" ng-click="addNewMenuItem()" style="float: right;">
+          <i class="glyphicon glyphicon-plus"></i>
+        </button>
+      </div>
+    </div> <!-- End of Menu -->
+
+    <!-- Submit -->
+    <div class="form-group col-sm-12 col-md-12">
+      <button class="btn btn-private col-sm-12 col-md-12">Submit</button>
+    </div>
+  </div>
+
+  <div id="map-canvas" style="height: 300px"></div>

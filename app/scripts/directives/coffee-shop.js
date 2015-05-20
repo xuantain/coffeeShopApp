@@ -11,9 +11,25 @@ angular.module('coffeeShopApp')
 		return {
 			templateUrl: $templateCache.get('coffee-shop'),
 			restrict: 'E',
-      replace: true,
+      		replace: true,
 			link: function(scope, element, attrs) {},
 			controller: function($scope) {
+
+				// get openTimes and closeTimes
+				if ($scope.shop.openingTimes) {
+					var openTimes_tmp = $scope.shop.openingTimes.substr(0, $scope.shop.openingTimes.indexOf('-'));
+					var closeTimes_tmp = $scope.shop.openingTimes.substr($scope.shop.openingTimes.indexOf('-') + 1);
+
+					$scope.shop.openTimes = openTimes_tmp + ":00";
+					$scope.shop.closeTimes = closeTimes_tmp + ":00";
+				}
+
+				// get images
+				if ($scope.shop._attachments) {
+					console.log($scope.shop._attachments);
+				}
+
+				// methods
 				$scope.addPictures = function() {
 					if (!$scope.shop || !$scope.shop._id) {
 						alert('Sorry, you must save the shop before adding files.');

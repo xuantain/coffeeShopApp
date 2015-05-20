@@ -1,7 +1,9 @@
 <div style="margin-top: 20px;">
-
-  <button type="button" ng-click="getLocation()">getLocation</button>
+  
+  <button type="button" ng-click="updateData()">Update data test</button>
   <span id="country-code"></span>
+
+  <!-- Menu -->
   <div>
     <div class="col-xs-11 col-sm-11"></div>
     <div class="col-xs-1 col-sm-1">
@@ -21,10 +23,10 @@
     </div>
   </div>
 
-  <!-- Localtion-condition -->
+  <!-- Searching Localtion -->
   <div id="location-search" class="col-xs-12 col-sm-12">
 
-    <!-- Country -->
+    <!-- Select your Country -->
     <div class="dropdown">
       <button id="country" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
         <span class="flag-icon flag-icon-{{country_code}}" style="height: 30px; width: 30px;"></span>
@@ -38,7 +40,7 @@
       </ul>
     </div>
 
-    <!-- City -->
+    <!-- Select your City -->
     <div class="dropdown">
       <button id="city" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
         DaNang City
@@ -57,7 +59,7 @@
       </ul>
     </div>
 
-    <!-- Distrist -->
+    <!-- Select your Distrist -->
     <div class="dropdown">
       <button id="distrist" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
         HaiChau Distrist
@@ -76,7 +78,7 @@
       </ul>
     </div>
 
-    <!-- Street -->
+    <!-- Select your Street -->
     <div class="dropdown">
       <button id="street" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
         Nguyen Chi Thanh Street
@@ -97,13 +99,13 @@
 
   </div>
 
-  <!-- Finding -->
+  <!-- Searching your coffee shop -->
   <div class="col-xs-12 col-sm-12" style="margin: 10px 0px; line-height: 30px; font-size: 1.5em;">
     <input type="text" class="col-xs-10 col-sm-10" placeholder="Find your coffee shop" ng-model="query" ng-change="theSameShops = []" />
     <span class="col-sm-1 glyphicon glyphicon-search" aria-hidden="true" style="line-height: 35px;"></span>
   </div>
 
-  <!-- Results -->
+  <!-- Searching results -->
   <div ui-sortable ng-model="coffeeShops" class="col-xs-12 col-sm-12">
     <coffee-shop class="repeated-item" ng-repeat="shop in coffeeShops | orderBy:'title' | firstLetterFilter:query"></coffee-shop>
   </div>

@@ -17,14 +17,15 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.sortable',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngMap'
   ])
   .constant('appSettings', {
     'appName': 'coffeeShop',
     'hostPath': 'http://localhost',
     'port': '9000',
-    'db': 'https://coffeeshop.iriscouch.com/coffee_shops'
-    // 'db': 'http://localhost:5984/coffee_shops'
+    // 'db': 'https://coffeeshop.iriscouch.com/coffee_shops'
+    'db': 'http://localhost:5984/coffee_shops'
   })
   .run(function($templateCache){
     $templateCache.put('coffee-shop', 'views/coffee-shop.html');
@@ -50,11 +51,11 @@ angular
       })
       .when('/add-new', {
         templateUrl: 'views/coffee-shop-detail.html',
-        controller: 'CoffeeshopdetailCtrl'
+        controller: 'CoffeeshopCtrl'
       })
       .when('/details/:shopID', {
         templateUrl: 'views/coffee-shop-detail.html',
-        controller: 'CoffeeshopDetailCtrl'
+        controller: 'CoffeeshopCtrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
