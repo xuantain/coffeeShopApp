@@ -14,22 +14,30 @@ describe('Service: CoffeeShopFactory', function() {
 
   it('should be accept a json object', function() {
     var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
       'title': 'Highland',
       'address': 'Bach Dang',
       'phone': '0905xxxyyy',
-      'country': 'vn',
-      'city': 'Da Nang',
-      'district': 'Hai Chau',
+      'locate': {
+        'country': 'vn',
+        'city': 'Da Nang',
+        'latitude': '',
+        'longitude': ''
+      },
       'mainImage': 0,
       '_attachments': {},
       'menu': {
-        'cafe sua': {},
-        'tra da': {}
+        'cafe sua': {
+          "price": "10000", 
+          "currency": "VND"
+        },
+        'bac xiu': {
+          "price": "15000", 
+          "currency": "VND"
+        }
       },
       'dateCreate': '2015-04-01',
       'isOperational': 'true',
-      'openingTimes': '7hAM-10hPM',
+      'openingTimes': '07:00-22:00',
       'rate': '3'
     });
 
@@ -39,45 +47,50 @@ describe('Service: CoffeeShopFactory', function() {
 
   it('should be create complete coffee shops', function() {
     var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
-      'openingTimes': '7hAM-10hPM',
+      'openingTimes': '07:00-22:00',
       'title': 'Highland'
     });
 
     expect(shop1).toBeDefined();
-    expect(shop1.id).toEqual('abczyzitem1');
     expect(shop1.title).toEqual('Highland');
     expect(shop1.address).toEqual('');
     expect(shop1.phone).toEqual('');
-    expect(shop1.country).toEqual('');
-    expect(shop1.city).toEqual('');
-    expect(shop1.district).toEqual('');
+    expect(shop1.locate.country).toEqual('');
+    expect(shop1.locate.city).toEqual('');
     expect(shop1.mainImage).toBeNull();
     expect(shop1.menu).toEqual(Object({}));
     expect(shop1.dateCreate).toEqual('');
     expect(shop1.isOperational).toEqual('');
-    expect(shop1.openingTimes).toEqual('7hAM-10hPM');
+    expect(shop1.openingTimes).toEqual('07:00-22:00');
     expect(shop1.rate).toEqual('');
   });
 
   it('should be able to save', function() {
     var shop1 = CoffeeShopFactory.create({
-      'id': 'abczyzitem1',
       'title': 'Highland',
       'address': 'Bach Dang',
       'phone': '0905xxxyyy',
-      'country': 'vn',
-      'city': 'Da Nang',
-      'district': 'Hai Chau',
+      'locate': {
+        'country': 'vn',
+        'city': 'Da Nang', 
+        'latitude': '',
+        'longitude': ''
+      },
       'mainImage': 0,
       '_attachments': {},
       'menu': {
-        'cafe sua': {},
-        'tra da': {}
+        'cafe sua': {
+          "price": "10000", 
+          "currency": "VND"
+        },
+        'bac xiu': {
+          "price": "15000", 
+          "currency": "VND"
+        }
       },
       'dateCreate': '2015-04-01',
       'isOperational': 'true',
-      'openingTimes': '7hAM-10hPM',
+      'openingTimes': '07:00-22:00',
       'rate': '3'
     });
 
@@ -92,28 +105,32 @@ describe('Service: CoffeeShopFactory', function() {
 
     beforeEach(function() {
       shop1 = CoffeeShopFactory.create({
-        'id': 'abczyzitem1',
         'title': 'Highland',
         'address': 'Bach Dang',
         'phone': '0905xxxyyy',
-        'country': 'vn',
-        'city': 'Da Nang',
-        'district': 'Hai Chau',
+        'locate': {
+          'country': 'vn',
+          'city': 'Da Nang', 
+          'latitude': '',
+          'longitude': ''
+        },
         'mainImage': 0,
         '_attachments': {},
         'menu': {
-          'tra da': {}
+          'cafe sua': {
+            "price": "15000", 
+            "currency": "VND"
+          }
         },
         'dateCreate': '2015-04-01',
         'isOperational': 'true',
-        'openingTimes': '7hAM-10hPM',
+        'openingTimes': '07:00-22:00',
         'rate': '3'
       });
     });
 
     it('should be able to add new menuItem', function() {
       var menuItem1 = MenuItemFactory.create({
-        'id': 'abcxyzmenuitem1',
         'title': 'Cafe Sua',
         'price': '7000VND'
       }); 
@@ -128,7 +145,6 @@ describe('Service: CoffeeShopFactory', function() {
 
     it('should not able to add a menuItem is conflicted', function() {
       var menuItem1 = MenuItemFactory.create({
-        'id': 'abcxyzmenuitem1',
         'title': 'Cafe Sua',
         'price': '7000VND'
       });
@@ -146,7 +162,6 @@ describe('Service: CoffeeShopFactory', function() {
     it('should not able to add a menuItem was not enough attributes required', function() {
       // menuItem1 losing attributes: 'id', 'price'
       var menuItem1 = MenuItemFactory.create({
-        'id': null,
         'title': 'Cafe Sua'
       });
 

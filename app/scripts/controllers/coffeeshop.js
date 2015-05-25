@@ -117,12 +117,10 @@ angular.module('coffeeShopApp')
     };
 
 
-    $scope.mapclick = function(e) {
+    $scope.getCoordinates = function(e) {
       $scope.latitude = e.latLng.A;
       $scope.longitude = e.latLng.F;
-      console.log(e.latLng.A);
-      console.log(e.latLng.F);
-    };    
+    };
 
     $scope.$watch(function() {
       localStorageService.set('coffeeShops', $scope.coffeeShops);

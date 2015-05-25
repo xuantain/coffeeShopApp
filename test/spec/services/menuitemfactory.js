@@ -13,17 +13,17 @@ describe('Service: MenuItemFactory', function () {
 
   it('should be create complete menuItem', function () {
     var item1 = MenuItemFactory.create({
-      'id': 'abcxyzmenuitem1',
-      'title': 'cafe Sua'
+      'price': '15000', 
+      'currency': 'VND'
     });
 
     expect(item1).toBeDefined();
     expect(item1).toEqual({
-      'id': 'abcxyzmenuitem1',
-      'title': 'cafe Sua',
+      'price': '15000',
+      "currency": 'VND',
       'category': '',
-      'price': '',
-      'description': ''
+      'description': '',
+      'image': ''
     });
   });
 
