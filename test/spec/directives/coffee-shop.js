@@ -33,7 +33,7 @@ describe('Directive: coffee-shop', function() {
 
   describe('images', function() {
 
-    it('should have a button to add pictures', function() {
+    xit('should have a button to add pictures', function() {
       expect(elm.find('coffee-shop').length).toEqual(2);
       var firstShopDirective = angular.element(elm.find('coffee-shop')[0]);
       expect(firstShopDirective).toBeDefined();

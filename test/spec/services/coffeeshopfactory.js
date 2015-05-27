@@ -131,8 +131,8 @@ describe('Service: CoffeeShopFactory', function() {
 
     it('should be able to add new menuItem', function() {
       var menuItem1 = MenuItemFactory.create({
-        'title': 'Cafe Sua',
-        'price': '7000VND'
+        'price': '7000', 
+        "currency": "VND"
       }); 
 
       expect(shop1.addNewMenuItem).toBeDefined();
@@ -140,13 +140,13 @@ describe('Service: CoffeeShopFactory', function() {
       expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(0);
 
       expect(shop1.menu).toBeDefined();
-      expect(shop1.menu.whiteCoffee).toBe(menuItem1);
+      expect(shop1.menu['whiteCoffee']).toBe(menuItem1);
     });
 
     it('should not able to add a menuItem is conflicted', function() {
       var menuItem1 = MenuItemFactory.create({
-        'title': 'Cafe Sua',
-        'price': '7000VND'
+        'price': '7000', 
+        "currency": "VND"
       });
 
       expect(shop1.addNewMenuItem).toBeDefined();
@@ -156,7 +156,7 @@ describe('Service: CoffeeShopFactory', function() {
       expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(1);
 
       expect(shop1.menu).toBeDefined();
-      expect(shop1.menu.whiteCoffee).toBe(menuItem1);
+      expect(shop1.menu['whiteCoffee']).toBe(menuItem1);
     });
 
     it('should not able to add a menuItem was not enough attributes required', function() {
@@ -169,7 +169,7 @@ describe('Service: CoffeeShopFactory', function() {
       // return 2 if added failure
       expect(shop1.addNewMenuItem('whiteCoffee', menuItem1)).toBe(2);
       expect(shop1.menu).toBeDefined();
-      expect(shop1.menu.whiteCoffee).not.toBeDefined();
+      expect(shop1.menu['whiteCoffee']).not.toBeDefined();
     });
 
   }); // End of Test for functionality addNewMenuItem(newItem)

@@ -22,9 +22,12 @@ angular.module('coffeeShopApp')
       'title': '',
       'address': '',
       'phone': '',
-      'country': '',
-      'city': '',
-      'district': '',
+      'locate': {
+        'country': '',
+        'city': '',
+        'latitude': '',
+        'longitude': ''
+      },
       'mainImage': null,
       'menu': {},
       'dateCreate': '',
@@ -51,8 +54,7 @@ angular.module('coffeeShopApp')
 
       // Return 0: successfully; 1: conflict; 2: failure;
       shopWithFunctionality.addNewMenuItem = function(name, menuItem) {
-        if(!Common.isObjJSON(menuItem) || Common.isNull(menuItem.id) || 
-            Common.isNull(menuItem.title) || Common.isNull(menuItem.price)
+        if(!Common.isObjJSON(menuItem) || Common.isNull(menuItem.price)
           ) {
           return 2;
         }

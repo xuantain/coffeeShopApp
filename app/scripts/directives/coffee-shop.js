@@ -11,7 +11,7 @@ angular.module('coffeeShopApp')
 		return {
 			templateUrl: $templateCache.get('coffee-shop'),
 			restrict: 'E',
-      		replace: true,
+      		// replace: true,
 			link: function(scope, element, attrs) {},
 			controller: function($scope) {
 
