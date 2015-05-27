@@ -43,6 +43,10 @@ module.exports = function(grunt) {
       //   files: ['test/spec/{,*/}*.js'],
       //   tasks: ['newer:jshint:test', 'karma']
       // },
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
@@ -170,7 +174,7 @@ module.exports = function(grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+      html: ['<%= yeoman.dist %>/{,*/}*.html'],
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -198,16 +202,7 @@ module.exports = function(grunt) {
     cssmin: {
       options: {
         root: '<%= yeoman.app %>'
-      },
-      // dist: {
-      //   files: {
-      //     '<%= yeoman.dist %>/styles/main.css': [
-      //       '.tmp/styles/{,*/}*.css',
-      //       '<%= yeoman.app %>/styles/{,*/}*.css'
-      //     ]
-      //   }
-      // },
-      // 'dist\\styles\\main.css': 'dist\\styles\\main.css'
+      }
     },
 
     // imagemin: {
@@ -301,15 +296,44 @@ module.exports = function(grunt) {
       }
     },
 
+    compass: {
+      options: {
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
+        imagesDir: '<%= yeoman.app %>/images',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        generatedImagesDir: '.tmp/images/generated',
+        importPath: '<%= yeoman.app %>/bower_components',
+        httpImagesPath: '../images',
+        httpGeneratedImagesPath: '../images/generated',
+        httpFontsPath: 'fonts',
+        relativeAssets: false,
+        assetCacheBuster: false
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
+      }
+    },
+
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'compass:server',
         'copy:styles'
       ],
       test: [
         'copy:styles'
       ],
       dist: [
+        'compass',
         'copy:styles',
         // 'imagemin',
         'svgmin'
@@ -319,29 +343,18 @@ module.exports = function(grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= yeoman.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   },
-    //   'dist\\styles\\main.css': 'dist\\styles\\main.css'
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
+    uglify: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/scripts/scripts.js': [
+            '<%= yeoman.dist %>/scripts/scripts.js'
+          ]
+        }
+      }
+    },
+    concat: {
+      dist: {}
+    },
 
     // Test settings
     karma: {
@@ -415,21 +428,18 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     // 'bowerInstall',
-    // 'jshint',
-    // 'test',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
-    'cssmin',
-    'htmlmin',
-    'copy',
     'cdnify',
+    'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
@@ -441,6 +451,5 @@ module.exports = function(grunt) {
   grunt.registerTask('deployCouch', function() {
     grunt.task.run('couch-push:localhost');
   });
-
 
 };
