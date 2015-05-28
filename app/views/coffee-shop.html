@@ -11,7 +11,7 @@
   <!-- show detail -->
   <div class="shop-content" ng-show="isShowContent">
     <div class="col-xs-10 col-sm-10 text-left">
-      <img src="http://localhost:5984/coffee_shops/{{shop._id}}/coffee-shop-icon.png" style="height: 70px;" >
+      <img src="http://localhost:5984/coffee_shops/{{shop._id}}/{{shop.mainImage}}" style="height: 70px;" >
       <p>Opening times: {{shop.openingTimes}}</p>
       <p><a href="#/details/{{coffeeShops.indexOf(shop)}}">Show detail</a></p>
     </div>
