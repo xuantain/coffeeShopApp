@@ -181,7 +181,6 @@ describe('Service: CoffeeShopFactory', function() {
       expect(shop1.menu).toBeDefined();
       expect(shop1.menu['whiteCoffee']).not.toBeDefined();
     });
-
   }); // End of Test for functionality addNewMenuItem(newItem)
 
   describe('Test functionality update()',function(){
@@ -232,7 +231,18 @@ describe('Service: CoffeeShopFactory', function() {
     it('should be able to update coffeeShop successfully but with warnings', function(){
       var updatePros = {
         'address': '',
-        'phone': '',
+        'phone': ''
+      };
+
+      expect(shop1.update).toBeDefined();
+      expect(shop1.update(updatePros)).toBe(1);
+      expect(shop1.title).toEqual('Highland');
+      expect(shop1.address).toBe('');
+      expect(shop1.phone).toBe('');
+    });
+
+    it('should be able to update coffeeShop successfully but with warnings - sub properties', function(){
+      var updatePros = {
         'locate': {
           'country': '',
           'city': ''
@@ -242,10 +252,8 @@ describe('Service: CoffeeShopFactory', function() {
       expect(shop1.update).toBeDefined();
       expect(shop1.update(updatePros)).toBe(1);
       expect(shop1.title).toEqual('Highland');
-      expect(shop1.address).toBeNull();
-      expect(shop1.phone).toBeNull();
-      expect(shop1.locate.country).toBeNull();
-      expect(shop1.locate.city).toBeNull();
+      expect(shop1.locate.country).toBe('');
+      expect(shop1.locate.city).toBe('');
     });
 
     it('should be able to update coffeeShop successfully', function(){
@@ -268,7 +276,6 @@ describe('Service: CoffeeShopFactory', function() {
       expect(shop1.locate.latitude).not.toBeNull();
       expect(shop1.locate.longitude).not.toBeNull();
     });
-
   });
 
 });
