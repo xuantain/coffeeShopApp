@@ -84,7 +84,7 @@
       bounds="[[{{shop.locate.latitude - 0.00004}}, {{shop.locate.longitude - 0.00007}}],[{{shop.locate.latitude - (-0.00007)}}, {{shop.locate.longitude - (-0.00007)}}]]" 
       opacity="0.7" 
       clickable="true" >
-    </shape> -->
+    </shape>  -->
     <shape 
       id="circle" 
       name="circle" 
@@ -110,12 +110,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="repeated-item" ng-repeat="(key, info) in shop.menu">
-              <td><img src="images/coffee-shop-icon.png" alt="coffee" style="width: 30px;"></td>
-              <td>{{key}}</td>
-              <td>{{info.price}}</td>
-              <td>{{info.currency}}</td>
-            </tr>
+            <menu-item class="repeated-item" ng-repeat="(key, info) in shop.menu">
+            </menu-item>
           </tbody>
         </table>
         <button class="btn btn-primary col-sm-1 col-md-1" ng-click="addNewMenuItem()" style="float: right;">
@@ -126,8 +122,8 @@
 
     <!-- Submit -->
     <div class="form-group col-sm-12 col-md-12">
-      <button class="btn btn-private col-sm-12 col-md-12">Submit</button>
+      <button class="btn col-sm-12 col-md-12" ng-click="updateShop()" ng-class="{'btn-success': isChanged, 'btn-private': !isChanged}">Save</button>
     </div>
   </div>
 
-  <div id="map-canvas" style="height: 300px"></div>
+  <!-- <div id="map-canvas" style="height: 300px"></div> -->

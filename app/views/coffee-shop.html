@@ -13,7 +13,7 @@
     <div class="col-xs-10 col-sm-10 text-left">
       <img src="http://localhost:5984/coffee_shops/{{shop._id}}/{{shop.mainImage}}" style="height: 70px;" >
       <p>Opening times: {{shop.openingTimes}}</p>
-      <p><a href="#/details/{{coffeeShops.indexOf(shop)}}">Show detail</a></p>
+      <p><a href="#/details/{{shop._id}}">Show detail</a></p>
     </div>
     <div class="col-xs-2 col-sm-2">
       <button class="btn btn-primary" ng-click="addPictures()"><i class="fa fa-camera"></i>

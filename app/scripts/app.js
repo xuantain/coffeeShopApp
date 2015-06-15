@@ -30,6 +30,7 @@ angular
   .run(function($templateCache){
     $templateCache.put('coffee-shop', 'views/coffee-shop.html');
     $templateCache.put('coffee-shop-similar', 'views/coffee-shop-similar.html');
+    $templateCache.put('menu-item', 'views/menu-item.html');
   })
   .config(['$httpProvider', function ($httpProvider) {
       // $httpProvider.defaults.useXDomain = true;

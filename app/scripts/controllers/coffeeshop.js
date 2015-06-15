@@ -8,11 +8,12 @@
  * Controller of the coffeeShopApp
  */
 angular.module('coffeeShopApp')
-  .controller('CoffeeshopCtrl', function ($scope, $http, $routeParams, localStorageService, Common, coffeeShopDB) {
+  .controller('CoffeeshopCtrl', function ($scope, $http, $routeParams, $filter, 
+                    localStorageService, Common, coffeeShopDB, CoffeeShopFactory) {
 
     $scope.fetchDataFromDB = function(returData) {
       if (returData) {
-        $scope.coffeeShops = [];
+        $scope.coffeeShops = new Array();
         for (var i = returData.length - 1; i >= 0; i--) {
           $scope.coffeeShops.push(returData[i].value);
         }
@@ -20,8 +21,7 @@ angular.module('coffeeShopApp')
     };
 
   	$scope.addNewShop = function() {
-      if(Common.isObjJSON($scope.shop) && (undefined !== $scope.shop.title) && 
-        ($scope.shop.title.trim().length !== 0)) {
+      if(Common.isObjJSON($scope.shop) && !Common.isNull($scope.shop.title)) {
         var isAddNew = false;
         $scope.theSameShops = $scope.theSameShops || [];
         if($scope.theSameShops.length > 0) {
@@ -45,32 +45,75 @@ angular.module('coffeeShopApp')
         }
   	}};
 
-  	$scope.removeShop = function(shop) {
-      var index = -1;
-      if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
+  	$scope.removeShop = function(shopID) {
+      var shopRemove = $scope.findShopByID(shopID);
+      if ( shopRemove === null ) {
+        throw new Error('shopID: ' + shopID + ' is not exist!');
+      }
+      var index = $scope.coffeeShops.indexOf(shopRemove);
+      if( index > -1 ) {
   		  $scope.coffeeShops.splice(index, 1);
       }
   	};
 
-    $scope.updateShop = function(shop) {
-      var index = -1;
-      if((index = $scope.coffeeShops.indexOf(shop)) > -1) {
-        if((undefined !== $scope.shop.address) && ($scope.shop.address.trim().length !== 0)) {
-          shop.address = $scope.shop.address;
-          shop.phone = $scope.shop.phone;
-          $scope.coffeeShops[index] = shop;
-          //reset all: scope.theSameShops + scope.shop
-          $scope.theSameShops = [];
-          $scope.shop = '';
-        } else {
-
-        }
+    $scope.updateShop = function() {
+      var updateProps = $scope.shop;
+      if ( updateProps._id !== $scope.currentShop._id ) {
+        throw new Error(updateProps + ' is not exist!');
+      }
+      // check update title's value
+      if ( updateProps.hasOwnProperty('title') && Common.isNull(updateProps.title) ) {
+        alert('title is not null');
         return;
       }
-      throw new Error(shop + ' is not exist!');
+      // check update address's value
+      if ( updateProps.hasOwnProperty('address') && Common.isNull(updateProps.address) ) {
+        alert('address is not null');
+        return;
+      }
+      // check for each property
+      var warn = false;
+      for (var property in updateProps) {
+        if (!updateProps.hasOwnProperty(property)) {
+          continue;
+        } 
+        // check for sub properties
+        if ( Common.isObjJSON(updateProps[property]) ) {
+          for (var subProperty in updateProps[property]) {
+            if ( $scope.currentShop[property].hasOwnProperty(subProperty) && 
+                    !Common.isNull($scope.currentShop[property][subProperty]) &&
+                     Common.isNull(updateProps[property][subProperty]) ) {
+              warn = true;
+            }
+          }
+        } // check for properties
+        else if ( $scope.currentShop.hasOwnProperty(property) && 
+                    !Common.isNull($scope.currentShop[property]) &&
+                     Common.isNull(updateProps[property]) ) {
+          warn = true;
+        }
+        $scope.currentShop[property] = updateProps[property];
+      }
+      $scope.isChanged = false;
+      if (warn) {
+        alert('Update shop successfully with warning');
+      }
     };
 
-    $scope.updateData = function() {
+    // Return 0: success; 1: conflict; 2: failure;
+    $scope.addNewMenuItem = function(name, menuItem) {
+      if(Common.isNull(name) || !Common.isObjJSON(menuItem) || Common.isNull(menuItem.price)
+        ) {
+        return 2;
+      }
+      if(this.menu[name] === menuItem) {
+        return 1;
+      }
+      this.menu[name] = menuItem;
+      return 0;
+    };
+
+    $scope.syncData = function() {
       try {
         localStorageService.set('coffeeShops', '');
         $scope.coffeeShops = coffeeShopDB.getAll($scope.fetchDataFromDB);
@@ -116,25 +159,49 @@ angular.module('coffeeShopApp')
       });
     };
 
-
     $scope.getCoordinates = function(e) {
       $scope.latitude = e.latLng.A;
       $scope.longitude = e.latLng.F;
     };
 
-    $scope.$watch(function() {
-      localStorageService.set('coffeeShops', $scope.coffeeShops);
-    }, true);
-
-    var shopsInStore = localStorageService.get('coffeeShops');
-    $scope.coffeeShops = shopsInStore || coffeeShopDB.getAll($scope.fetchDataFromDB);
-
-    $scope.getLocation();
-
-    $scope.whichShop = $routeParams.shopID;
-    if( $scope.coffeeShops && ($scope.coffeeShops.length > 0) && $scope.whichShop ) {
-      $scope.shop = $scope.coffeeShops[$scope.whichShop];
+    $scope.findShopByID = function(shopID) {
+      var shops = $filter('filter')($scope.coffeeShops, { _id: shopID });
+      return (shops.length > 0) ? shops[0] : null;
     }
+
+    var loadShopDetail = function(shopID) {
+      // Detail page
+      $scope.currentShop = null;
+      $scope.isChanged = false;
+      if( $scope.coffeeShops && ($scope.coffeeShops.length > 0) && 
+          !Common.isNull(shopID) && (shopID.length === 32) ) {
+        $scope.currentShop = $scope.findShopByID(shopID);
+        $scope.shop = JSON.parse(JSON.stringify($scope.currentShop));
+      }
+      $scope.$watchCollection('shop', function() {
+        if(angular.equals($scope.currentShop, $scope.shop)) {
+          $scope.isChanged = false;
+        } else {
+          $scope.isChanged = true;
+        }
+      });
+    }
+
+    var init = function() {
+      var shopsInStore = localStorageService.get('coffeeShops');
+      $scope.coffeeShops = shopsInStore || coffeeShopDB.getAll($scope.fetchDataFromDB);
+      $scope.$watch(function() {
+        localStorageService.set('coffeeShops', $scope.coffeeShops);
+      }, true);
+      $scope.getLocation();
+
+      var shopID = $routeParams.shopID;
+      if(shopID) {
+        loadShopDetail(shopID);
+      }
+    }
+
+    init();
     
   });
 

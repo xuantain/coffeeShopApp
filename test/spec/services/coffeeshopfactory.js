@@ -183,7 +183,7 @@ describe('Service: CoffeeShopFactory', function() {
     });
   }); // End of Test for functionality addNewMenuItem(newItem)
 
-  describe('Test functionality update()',function(){
+  xdescribe('Test functionality update()',function(){
     
     var shop1;
 
