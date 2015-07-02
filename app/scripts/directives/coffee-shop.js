@@ -72,15 +72,6 @@ angular.module('coffeeShopApp')
       link: function(scope, element, attrs) {},
       controller: function($scope) {
 
-        // get openTimes and closeTimes
-        if ($scope.shop.openingTimes) {
-          var openTimes_tmp = $scope.shop.openingTimes.substr(0, $scope.shop.openingTimes.indexOf('-'));
-          var closeTimes_tmp = $scope.shop.openingTimes.substr($scope.shop.openingTimes.indexOf('-') + 1);
-
-          $scope.shop.openTimes = openTimes_tmp + ":00";
-          $scope.shop.closeTimes = closeTimes_tmp + ":00";
-        }
-
         // get images
         if ($scope.shop._attachments) {
           console.log($scope.shop._attachments);

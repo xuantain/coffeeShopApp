@@ -26,7 +26,8 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
-      "openingTimes": "07:00-22:00",
+      "timesOpen": "07:00:00",
+      "timesClose": "22:00:00",
       "rate": "3"
     },{
       "title": "Evelyn",
@@ -54,7 +55,8 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
-      "openingTimes": "07:00-22:00",
+      "timesOpen": "07:00:00",
+      "timesClose": "22:00:00",
       "rate": "3"
     },{
       "title": "Cherry",
@@ -82,7 +84,8 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
-      "openingTimes": "07:00-22:00",
+      "timesOpen": "07:00:00",
+      "timesClose": "22:00:00",
       "rate": "3"
     },{
       "title": "Say coffee",
@@ -102,7 +105,8 @@
       },
       "dateCreate": "2015-04-01",
       "isOperational": "true",
-      "openingTimes": "07:00-22:00",
+      "timesOpen": "07:00:00",
+      "timesClose": "22:00:00",
       "rate": "3"
     },{
       "title": "Love Coffee", 
@@ -129,7 +133,8 @@
       }, 
       "dateCreate": "2015-04-01", 
       "isOperational": "true", 
-      "openingTimes": "07:00-22:00",
+      "timesOpen": "07:00:00",
+      "timesClose": "22:00:00",
       "rate": "3"
     }
   ]

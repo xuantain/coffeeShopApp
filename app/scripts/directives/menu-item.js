@@ -10,7 +10,7 @@ angular.module('coffeeShopApp')
   .directive('menuItem', function ($templateCache) {
     return {
       templateUrl: $templateCache.get('menu-item'),
-      restrict: 'E',
+      restrict: 'EC',
       replace: true
     };
   });

@@ -14,4 +14,4 @@ angular.module('coffeeShopApp')
       link: function postLink(scope, element, attrs) {
       }
     };
-  });
+});

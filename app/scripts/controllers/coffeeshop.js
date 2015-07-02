@@ -160,8 +160,8 @@ angular.module('coffeeShopApp')
     };
 
     $scope.getCoordinates = function(e) {
-      $scope.latitude = e.latLng.A;
-      $scope.longitude = e.latLng.F;
+      $scope.shop.locate.latitude = e.latLng.A;
+      $scope.shop.locate.longitude = e.latLng.F;
     };
 
     $scope.findShopByID = function(shopID) {

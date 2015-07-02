@@ -18,7 +18,7 @@ angular.module('coffeeShopApp')
         return;
       })
       .error(function(errorItem) {
-        // failFunction(errorItem);
+        failFunction(errorItem);
         alert('an error ocurred in Get All' + errorItem);
       });
     };
