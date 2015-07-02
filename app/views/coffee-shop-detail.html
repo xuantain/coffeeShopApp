@@ -66,9 +66,20 @@
       title="New shop"
       animation="Animation.BOUNCE"
       draggable="true"
-      visible="true"
-      icon="images/beachflag-coffee-new.png">
+      visible={{isChangeLocate}}
+      icon="images/beachflag-coffee-new.png"
+      >
     </marker>
+    <shape 
+      name="circle" 
+      stroke-color='#FF0000'
+      stroke-opacity="1"
+      stroke-weight="1" 
+      center="[{{shop.locate.latitude}}, {{shop.locate.longitude}}]" 
+      radius="1" 
+      visible={{isChangeLocate}}
+      editable="false" />
+
     <marker
       position="[{{currentShop.locate.latitude}}, {{currentShop.locate.longitude}}]"
       title="{{currentShop.title}}"
@@ -86,7 +97,6 @@
       clickable="true" >
     </shape>  -->
     <shape 
-      id="circle" 
       name="circle" 
       stroke-color='#FF0000'
       stroke-opacity="1"

@@ -13,7 +13,7 @@ angular.module('coffeeShopApp')
 
     $scope.fetchDataFromDB = function(returData) {
       if (returData) {
-        $scope.coffeeShops = new Array();
+        $scope.coffeeShops = [];
         for (var i = returData.length - 1; i >= 0; i--) {
           $scope.coffeeShops.push(returData[i].value);
         }
@@ -57,7 +57,7 @@ angular.module('coffeeShopApp')
   	};
 
     $scope.updateShop = function() {
-      var updateProps = $scope.shop;
+      var updateProps = cloneObject($scope.shop);
       if ( updateProps._id !== $scope.currentShop._id ) {
         throw new Error(updateProps + ' is not exist!');
       }
@@ -95,9 +95,14 @@ angular.module('coffeeShopApp')
         $scope.currentShop[property] = updateProps[property];
       }
       $scope.isChanged = false;
+      $scope.isChangeLocate = false;
       if (warn) {
         alert('Update shop successfully with warning');
       }
+    };
+
+    $scope.resetUpdateShop = function() {
+      $scope.shop = cloneObject($scope.currentShop);
     };
 
     // Return 0: success; 1: conflict; 2: failure;
@@ -123,7 +128,7 @@ angular.module('coffeeShopApp')
     };
 
     $scope.getLocation = function() {
-      $.ajax( { 
+      jQuery.ajax( { 
         url: '//freegeoip.net/json/', 
         type: 'POST', 
         dataType: 'jsonp',
@@ -141,7 +146,7 @@ angular.module('coffeeShopApp')
             // $('#country-name').html(location.country_name);
             // $('#country-code').html(location.country_code);
 
-            $scope.country_code = location.country_code.toLowerCase();
+            $scope.countryCode = location.country_code.toLowerCase();
 
             // console.log(location.city);
             // console.log(location.region_name);
@@ -159,7 +164,11 @@ angular.module('coffeeShopApp')
       });
     };
 
+    $scope.isChangeLocate = false;
     $scope.getCoordinates = function(e) {
+      if(!$scope.isChangeLocate) {
+        $scope.isChangeLocate = true;
+      }
       $scope.shop.locate.latitude = e.latLng.A;
       $scope.shop.locate.longitude = e.latLng.F;
     };
@@ -167,7 +176,12 @@ angular.module('coffeeShopApp')
     $scope.findShopByID = function(shopID) {
       var shops = $filter('filter')($scope.coffeeShops, { _id: shopID });
       return (shops.length > 0) ? shops[0] : null;
-    }
+    };
+
+    var cloneObject = function(srcObj) {
+      // return JSON.parse(JSON.stringify(srcObj));
+      return jQuery.extend(true, {}, srcObj);
+    };
 
     var loadShopDetail = function(shopID) {
       // Detail page
@@ -176,16 +190,15 @@ angular.module('coffeeShopApp')
       if( $scope.coffeeShops && ($scope.coffeeShops.length > 0) && 
           !Common.isNull(shopID) && (shopID.length === 32) ) {
         $scope.currentShop = $scope.findShopByID(shopID);
-        $scope.shop = JSON.parse(JSON.stringify($scope.currentShop));
+        $scope.shop = cloneObject($scope.currentShop);
       }
       $scope.$watchCollection('shop', function() {
-        if(angular.equals($scope.currentShop, $scope.shop)) {
-          $scope.isChanged = false;
-        } else {
-          $scope.isChanged = true;
-        }
+        $scope.isChanged = !angular.equals($scope.currentShop, $scope.shop);
       });
-    }
+      $scope.$watchCollection('shop.locate', function() {
+        $scope.isChanged = !angular.equals($scope.currentShop.locate, $scope.shop.locate);
+      });
+    };
 
     var init = function() {
       var shopsInStore = localStorageService.get('coffeeShops');
@@ -199,7 +212,7 @@ angular.module('coffeeShopApp')
       if(shopID) {
         loadShopDetail(shopID);
       }
-    }
+    };
 
     init();
     
