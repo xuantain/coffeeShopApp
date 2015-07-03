@@ -1,6 +1,10 @@
 <tr>
   <td><img src="images/coffee-shop-icon.png" alt="coffee" style="width: 30px;"></td>
-  <td>{{key}}</td>
-  <td>{{info.price}}</td>
-  <td>{{info.currency}}</td>
+  <td><input class="custom-input" type="text" ng-model="key"></td>
+  <td><input class="custom-input" type="text" ng-model="info.price"></td>
+  <td><input class="custom-input" type="text" ng-model="info.currency"></td>
+  <td>
+    <button class="btn btn-primary" ng-click="addPictures()"><i class="fa fa-camera"></i></button>
+    <button class="btn btn-danger" ng-click="removeMenuItem(key)" aria-label="Remove">X</button>
+  </td>
 </tr>

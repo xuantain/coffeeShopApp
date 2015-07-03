@@ -110,7 +110,7 @@
     <div class="form-group col-sm-12 col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">Menu</div>
-        <table class="table">
+        <table class="table menu-items">
           <thead>
             <tr>
               <th>Image</th>
@@ -121,11 +121,18 @@
           </thead>
           <tbody>
             <tr class="repeated-item menu-item" ng-repeat="(key, info) in shop.menu"></tr>
+            <tr>
+              <td><img src="images/coffee-shop-icon.png" alt="coffee" style="width: 30px;"></td>
+              <td><input class="custom-input" type="text" ng-model="menuItemTmp.key"></td>
+              <td><input class="custom-input" type="text" ng-model="menuItemTmp.info.price"></td>
+              <td><input class="custom-input" type="text" ng-model="menuItemTmp.info.currency"></td>
+              <td>
+                <button class="btn btn-primary" ng-click="addPictures()"><i class="fa fa-camera"></i></button>
+                <button class="btn btn-primary" ng-click="addNewMenuItem(menuItemTmp)" style="float: right;"><i class="glyphicon glyphicon-plus"></i></button>
+              </td>
+            </tr>
           </tbody>
         </table>
-        <button class="btn btn-primary col-sm-1 col-md-1" ng-click="addNewMenuItem()" style="float: right;">
-          <i class="glyphicon glyphicon-plus"></i>
-        </button>
       </div>
     </div> <!-- End of Menu -->
 

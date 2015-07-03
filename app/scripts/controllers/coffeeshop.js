@@ -105,17 +105,27 @@ angular.module('coffeeShopApp')
       $scope.shop = cloneObject($scope.currentShop);
     };
 
-    // Return 0: success; 1: conflict; 2: failure;
-    $scope.addNewMenuItem = function(name, menuItem) {
-      if(Common.isNull(name) || !Common.isObjJSON(menuItem) || Common.isNull(menuItem.price)
+    $scope.addNewMenuItem = function(menuItem) {
+      if(Common.isNull(menuItem.key) || !Common.isObjJSON(menuItem.info) || 
+          Common.isNull(menuItem.info.price)
         ) {
-        return 2;
+        throw new Error('key and price is not null!');
       }
-      if(this.menu[name] === menuItem) {
-        return 1;
+      if($scope.shop.menu[menuItem.key] === menuItem.info) {
+        throw new Error(menuItem.key + ' was exist!');
       }
-      this.menu[name] = menuItem;
-      return 0;
+      $scope.shop.menu[menuItem.key] = menuItem.info;
+      menuItem.key = '';
+      menuItem.info = {};
+    };
+
+    $scope.removeMenuItem = function(key) {
+      if(Common.isNull(key) || Common.isNull($scope.shop.menu)) {
+        throw new Error('menuItem is not exist!');
+      }
+      if(confirm('Are you sure???')) {
+        delete $scope.shop.menu[key];
+      }
     };
 
     $scope.syncData = function() {
@@ -197,6 +207,9 @@ angular.module('coffeeShopApp')
       });
       $scope.$watchCollection('shop.locate', function() {
         $scope.isChanged = !angular.equals($scope.currentShop.locate, $scope.shop.locate);
+      });
+      $scope.$watchCollection('shop.menu', function() {
+        $scope.isChanged = !angular.equals($scope.currentShop.menu, $scope.shop.menu);
       });
     };
 
